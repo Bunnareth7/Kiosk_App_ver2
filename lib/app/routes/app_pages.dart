@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/cart_success/bindings/cart_success_binding.dart';
+import '../modules/cart_success/views/cart_success_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/language_page/bindings/language_page_binding.dart';
@@ -67,6 +69,11 @@ class AppPages {
       name: _Paths.ORDER_DETAIL,
       page: () => const OrderDetailView(),
       binding: OrderDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.CART_SUCCESS,
+      page: () => const CartSuccessView(),
+      binding: CartSuccessBinding(),
     ),
   ];
 }

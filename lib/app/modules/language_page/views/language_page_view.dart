@@ -7,7 +7,7 @@ import 'package:kiosk_app/app/modules/login/views/login_view.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
-import 'package:kiosk_app/app/widgets/app_inkwell.dart'; // ← ADD THIS IMPORT
+import 'package:kiosk_app/app/widgets/app_inkwell.dart';
 
 class LanguageView extends StatelessWidget {
   const LanguageView({super.key});

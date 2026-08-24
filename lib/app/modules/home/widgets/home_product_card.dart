@@ -24,51 +24,57 @@ class HomeProductCard extends StatelessWidget {
           0,
         ),
         decoration: BoxDecoration(
-         
+          border: Border(
+            bottom: BorderSide(color: Colors.grey.shade200, width: 0.5),
+          ),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              width: 61.w,
-              height: 101.w,
+              width: 62.33.w,
+              height: 62.33.w,
               child: Image.asset(
                 product.imagePath,
                 fit: BoxFit.contain,
-                alignment: Alignment.bottomCenter,
+                alignment: Alignment.center,
                 errorBuilder: (context, error, stackTrace) => Container(
                   color: AppColor.neutral500,
                   child: const Icon(Icons.image, color: AppColor.neutral500),
                 ),
               ),
             ),
-            8.verticalSpace,
+            10.verticalSpace,
             Text(
               product.name,
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: AppTextStyle.body3_500,
+              style: AppTextStyle.body4_500.copyWith(),
             ),
+
             Wrap(
+              // mainAxisAlignment: MainAxisAlignment.center,
               alignment: WrapAlignment.center,
-              spacing: AppDecoration.paddingS4,
+              crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 Text(
                   '\$${product.price.toStringAsFixed(2)}',
-                  style: AppTextStyle.body3_500.copyWith(
+                  style: AppTextStyle.body5_500.copyWith(
                     color: AppColor.error500,
                   ),
                 ),
-                if (product.hasDiscount)
+                if (product.hasDiscount) ...[
+                  SizedBox(width: AppDecoration.paddingS4),
                   Text(
                     '\$${product.originalPrice!.toStringAsFixed(2)}',
-                    style: AppTextStyle.body3_500.copyWith(
+                    style: AppTextStyle.body5_500.copyWith(
                       color: AppColor.neutral500,
                       decoration: TextDecoration.lineThrough,
                       decorationColor: AppColor.neutral500,
                     ),
                   ),
+                ],
               ],
             ),
           ],

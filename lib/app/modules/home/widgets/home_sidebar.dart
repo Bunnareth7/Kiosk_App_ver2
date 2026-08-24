@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:kiosk_app/app/constants/app_decoration.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
-
 import '../controllers/home_controller.dart';
 import 'home_category.dart';
 
@@ -35,7 +34,7 @@ class HomeSidebar extends StatelessWidget {
                   border: Border(
                     left: BorderSide(
                       color: isSelected
-                          ?  AppColor.mainprimarykoi
+                          ? AppColor.mainprimarykoi
                           : Colors.transparent,
                       width: 3.w,
                     ),
@@ -53,7 +52,6 @@ class HomeSidebar extends StatelessWidget {
                       categories[index].label,
                       textAlign: TextAlign.center,
                       style: AppTextStyle.body3_400.copyWith(
-                        
                         color: isSelected
                             ? AppColor.mainprimarykoi
                             : Colors.grey,

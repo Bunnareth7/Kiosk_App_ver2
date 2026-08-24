@@ -1,9 +1,11 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kiosk_app/app/constants/app_decoration.dart';
+import 'package:kiosk_app/app/modules/cart_success/views/cart_success_view.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
+import 'package:kiosk_app/app/theme/app_style.dart';
+import 'package:kiosk_app/app/widgets/app_inkwell.dart';
+// Add this import
 
 class OrderBottomBar extends StatelessWidget {
   const OrderBottomBar({
@@ -24,54 +26,71 @@ class OrderBottomBar extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(AppDecoration.paddingL16),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(top: BorderSide(color: Colors.grey.shade200)),
+        color: AppColor.neutral100,
+        border: Border(top: BorderSide(color: AppColor.neutral200)),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12.r),
+          topRight: Radius.circular(12.r),
+        ),
       ),
       child: SafeArea(
         top: false,
-        child: Row(
+        child: Column(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   'Subtotal',
-                  style: TextStyle(fontSize: 12.sp, color: Colors.grey.shade600),
+                  style: AppTextStyle.body2_500.copyWith(
+                    color: AppColor.neutral800,
+                  ),
                 ),
                 Text(
                   '\$${subtotal.toStringAsFixed(2)}',
-                  style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+                  style: AppTextStyle.body2_500.copyWith(
+                    color: AppColor.neutral800,
+                  ),
                 ),
               ],
             ),
-            16.horizontalSpace,
-            QuantityStepper(
-              quantity: quantity,
-              onIncrement: onIncrement,
-              onDecrement: onDecrement,
-            ),
-            12.horizontalSpace,
-            Expanded(
-              child: SizedBox(
-                height: 44.h,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColor.mainprimarykoi,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                  ),
-                  child: Text(
-                    'ADD TO CART',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14.sp,
+            12.verticalSpace,
+            Row(
+              children: [
+                QuantityStepper(
+                  quantity: quantity,
+                  onIncrement: onIncrement,
+                  onDecrement: onDecrement,
+                ),
+                12.verticalSpace,
+                Expanded(
+                  child: AnimInkWell(
+                    onTap: () {
+                      CartSuccessView.open(
+                        subtotal: subtotal,
+                        quantity: quantity,
+                      );
+                    },
+                    child: SizedBox(
+                      height: 40.h,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppColor.mainprimarykoi,
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'ADD TO CART',
+                            style: AppTextStyle.body3_600.copyWith(
+                              color: AppColor.neutral100,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
           ],
         ),
@@ -98,36 +117,24 @@ class QuantityStepper extends StatelessWidget {
       children: [
         InkWell(
           onTap: onDecrement,
-          child: Container(
-            width: 28.w,
-            height: 28.w,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.grey.shade400),
-            ),
-            child: const Icon(Icons.remove, size: 16),
+          child: Padding(
+            padding: EdgeInsets.all(4.w),
+            child: Icon(Icons.remove, size: 24, color: AppColor.neutral500),
           ),
         ),
         SizedBox(
-          width: 28.w,
+          width: 24.w,
           child: Text(
             '$quantity',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
+            style: AppTextStyle.body2_500,
           ),
         ),
         InkWell(
           onTap: onIncrement,
-          child: Container(
-            width: 28.w,
-            height: 28.w,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColor.mainprimarykoi,
-            ),
-            child: const Icon(Icons.add, size: 16, color: Colors.white),
+          child: Padding(
+            padding: EdgeInsets.all(4.w),
+            child: Icon(Icons.add, size: 24, color: AppColor.mainprimarykoi),
           ),
         ),
       ],

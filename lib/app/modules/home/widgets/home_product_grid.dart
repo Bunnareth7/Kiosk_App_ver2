@@ -6,7 +6,6 @@ import 'package:kiosk_app/app/constants/app_path.dart';
 import 'package:kiosk_app/app/data/Model/products_model.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
-
 import 'home_product_card.dart';
 
 class HomeProductGrid extends StatelessWidget {
@@ -21,7 +20,7 @@ class HomeProductGrid extends StatelessWidget {
         padding: EdgeInsets.all(AppDecoration.paddingM10),
         decoration: BoxDecoration(
           color: AppColor.neutral100,
-          borderRadius: BorderRadius.circular(AppDecoration.largeRadius),
+          borderRadius: BorderRadius.circular(AppDecoration.largeRadius16),
           border: Border.all(color: Colors.grey.shade200, width: 1),
           boxShadow: [
             BoxShadow(
@@ -56,9 +55,9 @@ class HomeProductGrid extends StatelessWidget {
                 itemCount: sampleProducts.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  mainAxisSpacing: AppDecoration.paddingS8,
-                  crossAxisSpacing: AppDecoration.paddingS8,
-                  childAspectRatio: 0.40,
+                  mainAxisSpacing: AppDecoration.paddingM12,
+                  crossAxisSpacing: AppDecoration.paddingM12,
+                  childAspectRatio: 0.55,
                 ),
                 itemBuilder: (context, index) =>
                     HomeProductCard(product: sampleProducts[index]),

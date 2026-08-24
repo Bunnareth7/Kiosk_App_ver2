@@ -6,6 +6,7 @@ import 'package:kiosk_app/app/modules/order_detail/widgets/order_button_bar.dart
 import 'package:kiosk_app/app/modules/order_detail/widgets/order_detail_header.dart';
 import 'package:kiosk_app/app/modules/order_detail/widgets/order_detail_info.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
+import 'package:kiosk_app/app/theme/app_color.dart';
 
 import '../controllers/order_detail_controller.dart';
 import '../widgets/cup_size_section.dart';
@@ -23,7 +24,7 @@ class OrderDetailView extends GetView<OrderDetailController> {
     final product = controller.product;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.neutral100,
       body: SafeArea(
         child: Column(
           children: [
@@ -88,6 +89,7 @@ class OrderDetailView extends GetView<OrderDetailController> {
                 onDecrement: controller.decrementQuantity,
               ),
             ),
+            
           ],
         ),
       ),

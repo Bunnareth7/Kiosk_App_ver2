@@ -1,4 +1,3 @@
-
 class AppPath {
   AppPath._();
 
@@ -49,6 +48,7 @@ class AppPath {
   static const String lessIce = 'assets/images/lessIce.png';
   static const String normalIce = 'assets/images/normal_Ice.png';
   static const String moreIce = 'assets/images/moreIce.png';
-
-
+  // cart success
+  static const String shoppingCart = 'assets/images/add_shopping_cart.svg';
+  static const String checkGif = 'assets/images/success.gif';
 }

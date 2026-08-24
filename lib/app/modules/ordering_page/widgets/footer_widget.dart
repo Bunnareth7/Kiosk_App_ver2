@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:kiosk_app/app/constants/app_decoration.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
 
-// ========== PAYMENT FOOTER ==========
 class PaymentFooter extends StatelessWidget {
   const PaymentFooter({super.key});
 
@@ -42,7 +41,6 @@ class PaymentFooter extends StatelessWidget {
   }
 }
 
-// ========== MONAKOM LOGO (Private) ==========
 class _MonakomLogo extends StatelessWidget {
   const _MonakomLogo();
 
@@ -61,7 +59,6 @@ class _MonakomLogo extends StatelessWidget {
   }
 }
 
-// ========== PAYMENT ICON (Private) ==========
 class _PaymentIcon extends StatelessWidget {
   final String assetPath;
   const _PaymentIcon(this.assetPath);

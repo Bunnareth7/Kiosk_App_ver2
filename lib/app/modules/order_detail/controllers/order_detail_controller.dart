@@ -38,6 +38,9 @@ class OrderDetailController extends GetxController {
       product.price + cupSizeExtraPrices[selectedCupSizeIndex.value];
 
   double get subtotal => unitPrice * quantity.value;
+
+  
 }
+
 
 

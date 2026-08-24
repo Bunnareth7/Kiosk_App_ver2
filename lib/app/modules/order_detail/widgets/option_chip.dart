@@ -61,13 +61,12 @@ class OptionChip extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 9.sp,
-                  height: 1.0,
-                  color: isSelected
+                style: AppTextStyle.body4_400.copyWith(
+                   color: isSelected
                       ? AppColor.primarykoi400
                       : AppColor.neutral500,
-                ),
+                )
+                
               ),
             ],
           ],

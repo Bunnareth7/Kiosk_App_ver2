@@ -17,7 +17,7 @@ class SplashView extends StatelessWidget {
       backgroundColor: AppColor.neutral100,
       body: Stack(
         children: [
-          // KOI The - Centered
+          // KOI The - Center
           Center(
             child: SizedBox(
               height: 200.w,
@@ -34,8 +34,6 @@ class SplashView extends StatelessWidget {
               ),
             ),
           ),
-          
-          // Monakom Logo - Bottom Center
           Positioned(
             bottom: 40.h,
             left: 0,

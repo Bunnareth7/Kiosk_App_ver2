@@ -53,7 +53,6 @@ class ActionButtons extends StatelessWidget {
   }
 }
 
-// ========== SINGLE ACTION BUTTON (YOUR ORIGINAL DESIGN) ==========
 class _ActionButton extends StatelessWidget {
   final String label;
   final String imagePath;
@@ -75,7 +74,7 @@ class _ActionButton extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               color: AppColor.mainprimarykoi,
-              borderRadius: BorderRadius.circular(AppDecoration.smallRadius),
+              borderRadius: BorderRadius.circular(AppDecoration.smallRadius8),
             ),
             alignment: Alignment.centerLeft,
             child: Text(

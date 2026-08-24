@@ -19,24 +19,21 @@ class ImageSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 450.h,
-      //height: MediaQuery.of(context).size.height * 0.62,
+
       child: Stack(
         children: [
           CarouselSlider(
             options: CarouselOptions(
               height: double.infinity,
               autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 5),
+              autoPlayInterval: const Duration(seconds: 3),
               autoPlayAnimationDuration: const Duration(milliseconds: 800),
               viewportFraction: 1.0,
               onPageChanged: (index, reason) => onPageChanged(index),
             ),
             items: imageList.map((path) => _buildImage(path)).toList(),
           ),
-          _DotIndicator(
-            count: imageList.length,
-            currentIndex: currentIndex,
-          ),
+          _DotIndicator(count: imageList.length, currentIndex: currentIndex),
         ],
       ),
     );
@@ -58,8 +55,6 @@ class ImageSlider extends StatelessWidget {
     );
   }
 }
-
-// ========== DOT INDICATOR (Private) ==========
 class _DotIndicator extends StatelessWidget {
   final int count;
   final int currentIndex;

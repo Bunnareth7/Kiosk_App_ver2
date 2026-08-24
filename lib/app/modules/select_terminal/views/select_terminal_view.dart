@@ -68,7 +68,7 @@ class SelectionTerminalView extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border.all(color: const Color(0xFFecf0f1)),
                             borderRadius: BorderRadius.circular(
-                              AppDecoration.mediumRadius,
+                              AppDecoration.mediumRadius12,
                             ),
                           ),
                           child: Row(
@@ -127,7 +127,7 @@ class SelectionTerminalView extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border.all(color: const Color(0xFFecf0f1)),
                             borderRadius: BorderRadius.circular(
-                              AppDecoration.mediumRadius,
+                              AppDecoration.mediumRadius12,
                             ),
                           ),
                           child: Row(
@@ -187,7 +187,7 @@ class SelectionTerminalView extends StatelessWidget {
                           height: 45.w,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
-                              AppDecoration.smallRadius,
+                              AppDecoration.smallRadius8,
                             ),
                             color: AppColor.mainprimarykoi,
                           ),

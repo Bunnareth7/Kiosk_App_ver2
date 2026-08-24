@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:kiosk_app/app/constants/app_decoration.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
 import 'package:kiosk_app/app/modules/ordering_page/views/ordering_page_view.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
@@ -17,7 +16,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.neutral100,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -26,7 +25,6 @@ class LoginView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Back Button + Login Title
                 Row(
                   children: [
                     GestureDetector(
@@ -69,20 +67,17 @@ class LoginView extends StatelessWidget {
 
                 10.verticalSpace,
                 // Title
-                Text(
-                  'Cloud Account Login',
-                  style:AppTextStyle.body1_700
-                ),
+                Text('Cloud Account Login', style: AppTextStyle.body1_700),
                 4.verticalSpace,
                 // Subtitle
                 Text(
                   'Log in to your Cloud Account',
-                  style: AppTextStyle.body4_400.copyWith(color: AppColor.neutral500),
+                  style: AppTextStyle.body4_400.copyWith(
+                    color: AppColor.neutral500,
+                  ),
                 ),
 
-               30.verticalSpace,
-
-                // Username Field - Fixed 343px width, 42px height
+                30.verticalSpace,
                 Container(
                   width: 343.w,
                   height: 42.h,
@@ -96,7 +91,9 @@ class LoginView extends StatelessWidget {
                         child: TextField(
                           decoration: InputDecoration(
                             hintText: 'Username',
-                            hintStyle: AppTextStyle.body1_400.copyWith(color: AppColor.neutral500),
+                            hintStyle: AppTextStyle.body1_400.copyWith(
+                              color: AppColor.neutral500,
+                            ),
                             border: InputBorder.none,
                             contentPadding: EdgeInsets.symmetric(
                               horizontal: 16.w,
@@ -108,7 +105,7 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 12.h),
+                12.verticalSpace,
 
                 Container(
                   width: 343.w,
@@ -125,7 +122,9 @@ class LoginView extends StatelessWidget {
                           obscureText: true,
                           decoration: InputDecoration(
                             hintText: 'Password',
-                            hintStyle: AppTextStyle.body1_400.copyWith(color: AppColor.neutral500),
+                            hintStyle: AppTextStyle.body1_400.copyWith(
+                              color: AppColor.neutral500,
+                            ),
                             border: InputBorder.none,
                             contentPadding: EdgeInsets.symmetric(
                               horizontal: 16.w,
@@ -143,14 +142,13 @@ class LoginView extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
                       ),
-                      8.horizontalSpace
+                      8.horizontalSpace,
                     ],
                   ),
                 ),
 
                 30.verticalSpace,
 
-                // Login Button - Wrapped with AnimInkWell
                 AnimInkWell(
                   onTap: () {
                     OrderingView.open();

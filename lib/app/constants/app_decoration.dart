@@ -15,8 +15,9 @@ class AppDecoration {
   static double get paddingXL24 => 24.0.w;
 
   // Radius
-  static double get smallRadius => 8.0.r;
-  static double get mediumSmRadius => 10.0.r;
-  static double get mediumRadius => 12.0.r;
-  static double get largeRadius => 16.0.r;
+  static double get smallRadius6 => 6.0.r;
+  static double get smallRadius8 => 8.0.r;
+  static double get mediumSmRadius10 => 10.0.r;
+  static double get mediumRadius12 => 12.0.r;
+  static double get largeRadius16 => 16.0.r;
 }

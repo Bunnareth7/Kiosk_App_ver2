@@ -37,19 +37,20 @@ class ProductModel {
     };
   }
 }
+
 final List<ProductModel> sampleProducts = [
   const ProductModel(
     id: '1',
     name: 'Yakult Green Tea',
-    price: 1.00,
+    price: 1.50,
     originalPrice: 2.00,
     imagePath: 'assets/images/bubblemilktea.png',
   ),
   const ProductModel(
     id: '2',
     name: 'Yakult Green',
-    price: 1.00,
-    originalPrice: 2.00,
+    price: 2.00,
+
     imagePath: 'assets/images/bubblemilktea.png',
   ),
   const ProductModel(
@@ -96,8 +97,8 @@ final List<ProductModel> sampleProducts = [
   const ProductModel(
     id: '9',
     name: 'Yakult Green Bubble Milk Tea',
-    price: 1.00,
-    originalPrice: 2.00,
+    price: 2.00,
+    //originalPrice: 2.00,
     imagePath: 'assets/images/greentea.png',
   ),
   const ProductModel(
@@ -121,5 +122,4 @@ final List<ProductModel> sampleProducts = [
     originalPrice: 2.00,
     imagePath: 'assets/images/greentea.png',
   ),
- 
 ];
