@@ -8,6 +8,7 @@ class AppColor {
   static const Color secondaryColor = Color(0xFFC7C7C7);
   static const Color neutral100 = Color(0xFFFFFFFF);
   static const Color neutral200 = Color(0xFFF7F7F7);
+  static const Color neutral50 = Color(0xFFF1F1F1);
   static const Color neutral800 = Color(0xFF121212);
   static const Color error500 = Color(0xFFFF160A);
   static const Color neutral400 = Color(0xFFB2B2B2);

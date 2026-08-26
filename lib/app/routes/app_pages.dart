@@ -14,6 +14,8 @@ import '../modules/ordering_page/bindings/ordering_page_binding.dart';
 import '../modules/ordering_page/views/ordering_page_view.dart';
 import '../modules/select_terminal/bindings/select_terminal_binding.dart';
 import '../modules/select_terminal/views/select_terminal_view.dart';
+import '../modules/spacial_deal_screen/bindings/spacial_deal_screen_binding.dart';
+import '../modules/spacial_deal_screen/views/spacial_deal_screen_view.dart';
 import '../modules/splash_page/bindings/splash_page_binding.dart';
 import '../modules/splash_page/views/splash_page_view.dart';
 
@@ -74,6 +76,11 @@ class AppPages {
       name: _Paths.CART_SUCCESS,
       page: () => const CartSuccessView(),
       binding: CartSuccessBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPACIAL_DEAL_SCREEN,
+      page: () => const SpacialDealScreenView(),
+      binding: SpacialDealScreenBinding(),
     ),
   ];
 }

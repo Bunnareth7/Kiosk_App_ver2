@@ -14,6 +14,7 @@ abstract class Routes {
   static const LANGUAGE_PAGE = _Paths.LANGUAGE_PAGE;
   static const ORDER_DETAIL = _Paths.ORDER_DETAIL;
   static const CART_SUCCESS = _Paths.CART_SUCCESS;
+  static const SPACIAL_DEAL_SCREEN = _Paths.SPACIAL_DEAL_SCREEN;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const LANGUAGE_PAGE = '/language-page';
   static const ORDER_DETAIL = '/order-detail';
   static const CART_SUCCESS = '/cart-success';
+  static const SPACIAL_DEAL_SCREEN = '/spacial-deal-screen';
 }

@@ -6,6 +6,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
 import 'package:kiosk_app/app/modules/cart_success/controllers/cart_success_controller.dart';
+import 'package:kiosk_app/app/modules/spacial_deal_screen/views/spacial_deal_screen_view.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
@@ -27,9 +28,7 @@ class CartSuccessView extends GetView<CartSuccessController> {
 
     // Auto-navigate back after 4 seconds
     Future.delayed(const Duration(seconds: 4), () {
-      if (Get.context != null) {
-        Get.back();
-      }
+     SpacialDealScreenView.open();
     });
 
     return Scaffold(

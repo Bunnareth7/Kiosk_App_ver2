@@ -51,4 +51,9 @@ class AppPath {
   // cart success
   static const String shoppingCart = 'assets/images/add_shopping_cart.svg';
   static const String checkGif = 'assets/images/success.gif';
+  static const String spacialDeal = 'assets/icons/header_deal.svg';
+  static const String koichip = 'assets/images/koichip.png';
+  static const String spacialDeal1 = 'assets/images/spacialDeal1.png';
+  static const String spacialDeal2 = 'assets/images/spacialDeal2.png';
+  static const String spacialDeal3 = 'assets/images/spacialDeal3.png';
 }
