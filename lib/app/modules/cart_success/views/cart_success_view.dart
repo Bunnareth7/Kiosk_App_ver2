@@ -1,17 +1,15 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:get/get.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
-import 'package:kiosk_app/app/modules/cart_success/controllers/cart_success_controller.dart';
 import 'package:kiosk_app/app/modules/spacial_deal_screen/views/spacial_deal_screen_view.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
 
-class CartSuccessView extends GetView<CartSuccessController> {
+class CartSuccessView extends StatefulWidget {
   const CartSuccessView({super.key});
 
   static void open({required double subtotal, required int quantity}) {
@@ -22,14 +20,33 @@ class CartSuccessView extends GetView<CartSuccessController> {
   }
 
   @override
+  State<CartSuccessView> createState() => _CartSuccessViewState();
+}
+
+class _CartSuccessViewState extends State<CartSuccessView> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _timer = Timer(const Duration(seconds: 4), () {
+      if (mounted) {
+        SpacialDealScreenView.open();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final arguments = Get.arguments as Map?;
     final subtotal = arguments?['subtotal'] ?? 0.0;
-
-    // Auto-navigate back after 4 seconds
-    Future.delayed(const Duration(seconds: 4), () {
-     SpacialDealScreenView.open();
-    });
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -52,7 +69,6 @@ class CartSuccessView extends GetView<CartSuccessController> {
                       height: 60.w,
                     ),
                   ),
-
                   Positioned(
                     right: -19,
                     top: -19,

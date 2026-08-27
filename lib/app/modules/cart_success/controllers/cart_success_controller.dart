@@ -1,23 +1,24 @@
+import 'dart:async';
 import 'package:get/get.dart';
+import 'package:kiosk_app/app/modules/spacial_deal_screen/views/spacial_deal_screen_view.dart';
 
 class CartSuccessController extends GetxController {
-  //TODO: Implement CartSuccessController
+  Timer? _timer;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
-  }
 
-  @override
-  void onReady() {
-    super.onReady();
+    _timer = Timer(const Duration(seconds: 4), () {
+      if (Get.currentRoute == '/cart-success') {
+        SpacialDealScreenView.open();
+      }
+    });
   }
 
   @override
   void onClose() {
+    _timer?.cancel();
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

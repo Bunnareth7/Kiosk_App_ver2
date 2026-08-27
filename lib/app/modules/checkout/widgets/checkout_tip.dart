@@ -1,0 +1,164 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kiosk_app/app/theme/app_color.dart';
+import 'package:kiosk_app/app/theme/app_style.dart';
+
+class CheckoutTipSection extends StatefulWidget {
+  const CheckoutTipSection({super.key});
+
+  @override
+  State<CheckoutTipSection> createState() => _CheckoutTipSectionState();
+}
+
+class _CheckoutTipSectionState extends State<CheckoutTipSection> {
+  int selectedIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      color: AppColor.neutral100,
+      padding: EdgeInsets.all(16.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Add Tips',
+            style: AppTextStyle.body2_600.copyWith(color: AppColor.neutral800),
+          ),
+
+          12.verticalSpace,
+
+          Row(
+            children: [
+              Expanded(
+                child: _TipItem(
+                  title: 'No Tip',
+                  amount: '',
+                  isSelected: selectedIndex == 0,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = 0;
+                    });
+                  },
+                ),
+              ),
+
+              8.horizontalSpace,
+
+              Expanded(
+                child: _TipItem(
+                  title: '10%',
+                  amount: '\$0.72',
+                  isSelected: selectedIndex == 1,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = 1;
+                    });
+                  },
+                ),
+              ),
+
+              8.horizontalSpace,
+
+              Expanded(
+                child: _TipItem(
+                  title: '15%',
+                  amount: '\$1.08',
+                  isSelected: selectedIndex == 2,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = 2;
+                    });
+                  },
+                ),
+              ),
+
+              8.horizontalSpace,
+
+              Expanded(
+                child: _TipItem(
+                  title: '20%',
+                  amount: '\$1.44',
+                  isSelected: selectedIndex == 3,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = 3;
+                    });
+                  },
+                ),
+              ),
+
+              8.horizontalSpace,
+
+              Expanded(
+                child: _TipItem(
+                  title: 'Custom',
+                  amount: '',
+                  isSelected: selectedIndex == 4,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = 4;
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _TipItem extends StatelessWidget {
+  const _TipItem({
+    required this.title,
+    required this.amount,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final String title;
+  final String amount;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 32.h,
+        width: 60.64.w,
+        decoration: BoxDecoration(
+          color: isSelected ? AppColor.primarykoi200 : AppColor.neutral50,
+          borderRadius: BorderRadius.circular(6.r),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              title,
+              style: AppTextStyle.body4_500.copyWith(
+                color: isSelected
+                    ? AppColor.mainprimarykoi
+                    : AppColor.neutral500,
+              ),
+            ),
+
+            if (amount.isNotEmpty)
+              Text(
+                amount,
+                style: AppTextStyle.body4_500.copyWith(
+                  color: isSelected
+                      ? AppColor.mainprimarykoi
+                      : AppColor.neutral800,
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}

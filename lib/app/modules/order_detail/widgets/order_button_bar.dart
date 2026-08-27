@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:kiosk_app/app/constants/app_decoration.dart';
 import 'package:kiosk_app/app/modules/cart_success/views/cart_success_view.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
 import 'package:kiosk_app/app/widgets/app_inkwell.dart';
-// Add this import
 
 class OrderBottomBar extends StatelessWidget {
   const OrderBottomBar({
@@ -14,12 +14,14 @@ class OrderBottomBar extends StatelessWidget {
     required this.quantity,
     required this.onIncrement,
     required this.onDecrement,
+    required this.onAddToCart,
   });
 
   final double subtotal;
   final int quantity;
   final VoidCallback onIncrement;
   final VoidCallback onDecrement;
+  final VoidCallback onAddToCart;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,9 @@ class OrderBottomBar extends StatelessWidget {
                 ),
               ],
             ),
+
             12.verticalSpace,
+
             Row(
               children: [
                 QuantityStepper(
@@ -62,10 +66,17 @@ class OrderBottomBar extends StatelessWidget {
                   onIncrement: onIncrement,
                   onDecrement: onDecrement,
                 ),
-                12.verticalSpace,
+
+                12.horizontalSpace,
+
                 Expanded(
                   child: AnimInkWell(
                     onTap: () {
+                      // Tell the parent that the product
+                      // has been added to the cart.
+                      onAddToCart();
+
+                      // Keep your existing success page.
                       CartSuccessView.open(
                         subtotal: subtotal,
                         quantity: quantity,
@@ -122,6 +133,7 @@ class QuantityStepper extends StatelessWidget {
             child: Icon(Icons.remove, size: 24, color: AppColor.neutral500),
           ),
         ),
+
         SizedBox(
           width: 24.w,
           child: Text(
@@ -130,6 +142,7 @@ class QuantityStepper extends StatelessWidget {
             style: AppTextStyle.body2_500,
           ),
         ),
+
         InkWell(
           onTap: onIncrement,
           child: Padding(
