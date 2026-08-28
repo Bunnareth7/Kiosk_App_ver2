@@ -488,6 +488,54 @@ class $CartItemsTable extends CartItems
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _cupSizeMeta = const VerificationMeta(
+    'cupSize',
+  );
+  @override
+  late final GeneratedColumn<String> cupSize = GeneratedColumn<String>(
+    'cup_size',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('S'),
+  );
+  static const VerificationMeta _sugarLevelMeta = const VerificationMeta(
+    'sugarLevel',
+  );
+  @override
+  late final GeneratedColumn<String> sugarLevel = GeneratedColumn<String>(
+    'sugar_level',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('25%'),
+  );
+  static const VerificationMeta _iceLevelMeta = const VerificationMeta(
+    'iceLevel',
+  );
+  @override
+  late final GeneratedColumn<String> iceLevel = GeneratedColumn<String>(
+    'ice_level',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('Less Ice'),
+  );
+  static const VerificationMeta _toppingsMeta = const VerificationMeta(
+    'toppings',
+  );
+  @override
+  late final GeneratedColumn<String> toppings = GeneratedColumn<String>(
+    'toppings',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -497,6 +545,10 @@ class $CartItemsTable extends CartItems
     quantity,
     discount,
     image,
+    cupSize,
+    sugarLevel,
+    iceLevel,
+    toppings,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -560,6 +612,30 @@ class $CartItemsTable extends CartItems
         image.isAcceptableOrUnknown(data['image']!, _imageMeta),
       );
     }
+    if (data.containsKey('cup_size')) {
+      context.handle(
+        _cupSizeMeta,
+        cupSize.isAcceptableOrUnknown(data['cup_size']!, _cupSizeMeta),
+      );
+    }
+    if (data.containsKey('sugar_level')) {
+      context.handle(
+        _sugarLevelMeta,
+        sugarLevel.isAcceptableOrUnknown(data['sugar_level']!, _sugarLevelMeta),
+      );
+    }
+    if (data.containsKey('ice_level')) {
+      context.handle(
+        _iceLevelMeta,
+        iceLevel.isAcceptableOrUnknown(data['ice_level']!, _iceLevelMeta),
+      );
+    }
+    if (data.containsKey('toppings')) {
+      context.handle(
+        _toppingsMeta,
+        toppings.isAcceptableOrUnknown(data['toppings']!, _toppingsMeta),
+      );
+    }
     return context;
   }
 
@@ -597,6 +673,22 @@ class $CartItemsTable extends CartItems
         DriftSqlType.string,
         data['${effectivePrefix}image'],
       ),
+      cupSize: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}cup_size'],
+      )!,
+      sugarLevel: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sugar_level'],
+      )!,
+      iceLevel: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}ice_level'],
+      )!,
+      toppings: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}toppings'],
+      )!,
     );
   }
 
@@ -614,6 +706,10 @@ class CartItem extends DataClass implements Insertable<CartItem> {
   final int quantity;
   final double discount;
   final String? image;
+  final String cupSize;
+  final String sugarLevel;
+  final String iceLevel;
+  final String toppings;
   const CartItem({
     required this.id,
     required this.productId,
@@ -622,6 +718,10 @@ class CartItem extends DataClass implements Insertable<CartItem> {
     required this.quantity,
     required this.discount,
     this.image,
+    required this.cupSize,
+    required this.sugarLevel,
+    required this.iceLevel,
+    required this.toppings,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -635,6 +735,10 @@ class CartItem extends DataClass implements Insertable<CartItem> {
     if (!nullToAbsent || image != null) {
       map['image'] = Variable<String>(image);
     }
+    map['cup_size'] = Variable<String>(cupSize);
+    map['sugar_level'] = Variable<String>(sugarLevel);
+    map['ice_level'] = Variable<String>(iceLevel);
+    map['toppings'] = Variable<String>(toppings);
     return map;
   }
 
@@ -649,6 +753,10 @@ class CartItem extends DataClass implements Insertable<CartItem> {
       image: image == null && nullToAbsent
           ? const Value.absent()
           : Value(image),
+      cupSize: Value(cupSize),
+      sugarLevel: Value(sugarLevel),
+      iceLevel: Value(iceLevel),
+      toppings: Value(toppings),
     );
   }
 
@@ -665,6 +773,10 @@ class CartItem extends DataClass implements Insertable<CartItem> {
       quantity: serializer.fromJson<int>(json['quantity']),
       discount: serializer.fromJson<double>(json['discount']),
       image: serializer.fromJson<String?>(json['image']),
+      cupSize: serializer.fromJson<String>(json['cupSize']),
+      sugarLevel: serializer.fromJson<String>(json['sugarLevel']),
+      iceLevel: serializer.fromJson<String>(json['iceLevel']),
+      toppings: serializer.fromJson<String>(json['toppings']),
     );
   }
   @override
@@ -678,6 +790,10 @@ class CartItem extends DataClass implements Insertable<CartItem> {
       'quantity': serializer.toJson<int>(quantity),
       'discount': serializer.toJson<double>(discount),
       'image': serializer.toJson<String?>(image),
+      'cupSize': serializer.toJson<String>(cupSize),
+      'sugarLevel': serializer.toJson<String>(sugarLevel),
+      'iceLevel': serializer.toJson<String>(iceLevel),
+      'toppings': serializer.toJson<String>(toppings),
     };
   }
 
@@ -689,6 +805,10 @@ class CartItem extends DataClass implements Insertable<CartItem> {
     int? quantity,
     double? discount,
     Value<String?> image = const Value.absent(),
+    String? cupSize,
+    String? sugarLevel,
+    String? iceLevel,
+    String? toppings,
   }) => CartItem(
     id: id ?? this.id,
     productId: productId ?? this.productId,
@@ -697,6 +817,10 @@ class CartItem extends DataClass implements Insertable<CartItem> {
     quantity: quantity ?? this.quantity,
     discount: discount ?? this.discount,
     image: image.present ? image.value : this.image,
+    cupSize: cupSize ?? this.cupSize,
+    sugarLevel: sugarLevel ?? this.sugarLevel,
+    iceLevel: iceLevel ?? this.iceLevel,
+    toppings: toppings ?? this.toppings,
   );
   CartItem copyWithCompanion(CartItemsCompanion data) {
     return CartItem(
@@ -709,6 +833,12 @@ class CartItem extends DataClass implements Insertable<CartItem> {
       quantity: data.quantity.present ? data.quantity.value : this.quantity,
       discount: data.discount.present ? data.discount.value : this.discount,
       image: data.image.present ? data.image.value : this.image,
+      cupSize: data.cupSize.present ? data.cupSize.value : this.cupSize,
+      sugarLevel: data.sugarLevel.present
+          ? data.sugarLevel.value
+          : this.sugarLevel,
+      iceLevel: data.iceLevel.present ? data.iceLevel.value : this.iceLevel,
+      toppings: data.toppings.present ? data.toppings.value : this.toppings,
     );
   }
 
@@ -721,14 +851,29 @@ class CartItem extends DataClass implements Insertable<CartItem> {
           ..write('price: $price, ')
           ..write('quantity: $quantity, ')
           ..write('discount: $discount, ')
-          ..write('image: $image')
+          ..write('image: $image, ')
+          ..write('cupSize: $cupSize, ')
+          ..write('sugarLevel: $sugarLevel, ')
+          ..write('iceLevel: $iceLevel, ')
+          ..write('toppings: $toppings')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, productId, productName, price, quantity, discount, image);
+  int get hashCode => Object.hash(
+    id,
+    productId,
+    productName,
+    price,
+    quantity,
+    discount,
+    image,
+    cupSize,
+    sugarLevel,
+    iceLevel,
+    toppings,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -739,7 +884,11 @@ class CartItem extends DataClass implements Insertable<CartItem> {
           other.price == this.price &&
           other.quantity == this.quantity &&
           other.discount == this.discount &&
-          other.image == this.image);
+          other.image == this.image &&
+          other.cupSize == this.cupSize &&
+          other.sugarLevel == this.sugarLevel &&
+          other.iceLevel == this.iceLevel &&
+          other.toppings == this.toppings);
 }
 
 class CartItemsCompanion extends UpdateCompanion<CartItem> {
@@ -750,6 +899,10 @@ class CartItemsCompanion extends UpdateCompanion<CartItem> {
   final Value<int> quantity;
   final Value<double> discount;
   final Value<String?> image;
+  final Value<String> cupSize;
+  final Value<String> sugarLevel;
+  final Value<String> iceLevel;
+  final Value<String> toppings;
   const CartItemsCompanion({
     this.id = const Value.absent(),
     this.productId = const Value.absent(),
@@ -758,6 +911,10 @@ class CartItemsCompanion extends UpdateCompanion<CartItem> {
     this.quantity = const Value.absent(),
     this.discount = const Value.absent(),
     this.image = const Value.absent(),
+    this.cupSize = const Value.absent(),
+    this.sugarLevel = const Value.absent(),
+    this.iceLevel = const Value.absent(),
+    this.toppings = const Value.absent(),
   });
   CartItemsCompanion.insert({
     this.id = const Value.absent(),
@@ -767,6 +924,10 @@ class CartItemsCompanion extends UpdateCompanion<CartItem> {
     required int quantity,
     this.discount = const Value.absent(),
     this.image = const Value.absent(),
+    this.cupSize = const Value.absent(),
+    this.sugarLevel = const Value.absent(),
+    this.iceLevel = const Value.absent(),
+    this.toppings = const Value.absent(),
   }) : productId = Value(productId),
        productName = Value(productName),
        price = Value(price),
@@ -779,6 +940,10 @@ class CartItemsCompanion extends UpdateCompanion<CartItem> {
     Expression<int>? quantity,
     Expression<double>? discount,
     Expression<String>? image,
+    Expression<String>? cupSize,
+    Expression<String>? sugarLevel,
+    Expression<String>? iceLevel,
+    Expression<String>? toppings,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -788,6 +953,10 @@ class CartItemsCompanion extends UpdateCompanion<CartItem> {
       if (quantity != null) 'quantity': quantity,
       if (discount != null) 'discount': discount,
       if (image != null) 'image': image,
+      if (cupSize != null) 'cup_size': cupSize,
+      if (sugarLevel != null) 'sugar_level': sugarLevel,
+      if (iceLevel != null) 'ice_level': iceLevel,
+      if (toppings != null) 'toppings': toppings,
     });
   }
 
@@ -799,6 +968,10 @@ class CartItemsCompanion extends UpdateCompanion<CartItem> {
     Value<int>? quantity,
     Value<double>? discount,
     Value<String?>? image,
+    Value<String>? cupSize,
+    Value<String>? sugarLevel,
+    Value<String>? iceLevel,
+    Value<String>? toppings,
   }) {
     return CartItemsCompanion(
       id: id ?? this.id,
@@ -808,6 +981,10 @@ class CartItemsCompanion extends UpdateCompanion<CartItem> {
       quantity: quantity ?? this.quantity,
       discount: discount ?? this.discount,
       image: image ?? this.image,
+      cupSize: cupSize ?? this.cupSize,
+      sugarLevel: sugarLevel ?? this.sugarLevel,
+      iceLevel: iceLevel ?? this.iceLevel,
+      toppings: toppings ?? this.toppings,
     );
   }
 
@@ -835,6 +1012,18 @@ class CartItemsCompanion extends UpdateCompanion<CartItem> {
     if (image.present) {
       map['image'] = Variable<String>(image.value);
     }
+    if (cupSize.present) {
+      map['cup_size'] = Variable<String>(cupSize.value);
+    }
+    if (sugarLevel.present) {
+      map['sugar_level'] = Variable<String>(sugarLevel.value);
+    }
+    if (iceLevel.present) {
+      map['ice_level'] = Variable<String>(iceLevel.value);
+    }
+    if (toppings.present) {
+      map['toppings'] = Variable<String>(toppings.value);
+    }
     return map;
   }
 
@@ -847,7 +1036,11 @@ class CartItemsCompanion extends UpdateCompanion<CartItem> {
           ..write('price: $price, ')
           ..write('quantity: $quantity, ')
           ..write('discount: $discount, ')
-          ..write('image: $image')
+          ..write('image: $image, ')
+          ..write('cupSize: $cupSize, ')
+          ..write('sugarLevel: $sugarLevel, ')
+          ..write('iceLevel: $iceLevel, ')
+          ..write('toppings: $toppings')
           ..write(')'))
         .toString();
   }
@@ -1085,6 +1278,10 @@ typedef $$CartItemsTableCreateCompanionBuilder =
       required int quantity,
       Value<double> discount,
       Value<String?> image,
+      Value<String> cupSize,
+      Value<String> sugarLevel,
+      Value<String> iceLevel,
+      Value<String> toppings,
     });
 typedef $$CartItemsTableUpdateCompanionBuilder =
     CartItemsCompanion Function({
@@ -1095,6 +1292,10 @@ typedef $$CartItemsTableUpdateCompanionBuilder =
       Value<int> quantity,
       Value<double> discount,
       Value<String?> image,
+      Value<String> cupSize,
+      Value<String> sugarLevel,
+      Value<String> iceLevel,
+      Value<String> toppings,
     });
 
 class $$CartItemsTableFilterComposer
@@ -1138,6 +1339,26 @@ class $$CartItemsTableFilterComposer
 
   ColumnFilters<String> get image => $composableBuilder(
     column: $table.image,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get cupSize => $composableBuilder(
+    column: $table.cupSize,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get sugarLevel => $composableBuilder(
+    column: $table.sugarLevel,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get iceLevel => $composableBuilder(
+    column: $table.iceLevel,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get toppings => $composableBuilder(
+    column: $table.toppings,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -1185,6 +1406,26 @@ class $$CartItemsTableOrderingComposer
     column: $table.image,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get cupSize => $composableBuilder(
+    column: $table.cupSize,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get sugarLevel => $composableBuilder(
+    column: $table.sugarLevel,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get iceLevel => $composableBuilder(
+    column: $table.iceLevel,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get toppings => $composableBuilder(
+    column: $table.toppings,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$CartItemsTableAnnotationComposer
@@ -1218,6 +1459,20 @@ class $$CartItemsTableAnnotationComposer
 
   GeneratedColumn<String> get image =>
       $composableBuilder(column: $table.image, builder: (column) => column);
+
+  GeneratedColumn<String> get cupSize =>
+      $composableBuilder(column: $table.cupSize, builder: (column) => column);
+
+  GeneratedColumn<String> get sugarLevel => $composableBuilder(
+    column: $table.sugarLevel,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get iceLevel =>
+      $composableBuilder(column: $table.iceLevel, builder: (column) => column);
+
+  GeneratedColumn<String> get toppings =>
+      $composableBuilder(column: $table.toppings, builder: (column) => column);
 }
 
 class $$CartItemsTableTableManager
@@ -1255,6 +1510,10 @@ class $$CartItemsTableTableManager
                 Value<int> quantity = const Value.absent(),
                 Value<double> discount = const Value.absent(),
                 Value<String?> image = const Value.absent(),
+                Value<String> cupSize = const Value.absent(),
+                Value<String> sugarLevel = const Value.absent(),
+                Value<String> iceLevel = const Value.absent(),
+                Value<String> toppings = const Value.absent(),
               }) => CartItemsCompanion(
                 id: id,
                 productId: productId,
@@ -1263,6 +1522,10 @@ class $$CartItemsTableTableManager
                 quantity: quantity,
                 discount: discount,
                 image: image,
+                cupSize: cupSize,
+                sugarLevel: sugarLevel,
+                iceLevel: iceLevel,
+                toppings: toppings,
               ),
           createCompanionCallback:
               ({
@@ -1273,6 +1536,10 @@ class $$CartItemsTableTableManager
                 required int quantity,
                 Value<double> discount = const Value.absent(),
                 Value<String?> image = const Value.absent(),
+                Value<String> cupSize = const Value.absent(),
+                Value<String> sugarLevel = const Value.absent(),
+                Value<String> iceLevel = const Value.absent(),
+                Value<String> toppings = const Value.absent(),
               }) => CartItemsCompanion.insert(
                 id: id,
                 productId: productId,
@@ -1281,6 +1548,10 @@ class $$CartItemsTableTableManager
                 quantity: quantity,
                 discount: discount,
                 image: image,
+                cupSize: cupSize,
+                sugarLevel: sugarLevel,
+                iceLevel: iceLevel,
+                toppings: toppings,
               ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))

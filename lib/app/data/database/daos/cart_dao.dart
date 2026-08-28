@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:kiosk_app/app/data/Model/cart_summary.dart';
 import 'package:kiosk_app/app/data/tables/cart_item.dart';
+
 import '../app_database.dart';
 
 part 'cart_dao.g.dart';
@@ -17,38 +18,53 @@ class CartDao extends DatabaseAccessor<AppDatabase> with _$CartDaoMixin {
     return select(cartItems).watch();
   }
 
- Future<void> addToCart({
-  required String productId,
-  required String productName,
-  required double price,
-  required String image,
-  required int quantity,
-}) async {
-  final existingItem = await (select(
-    cartItems,
-  )..where((tbl) => tbl.productId.equals(productId))).getSingleOrNull();
+  Future<void> addToCart({
+    required String productId,
+    required String productName,
+    required double price,
+    required String image,
+    required int quantity,
+    required String cupSize,
+    required String sugarLevel,
+    required String iceLevel,
+    required String toppings,
+  }) async {
+    final existingItem =
+        await (select(cartItems)..where(
+              (tbl) =>
+                  tbl.productId.equals(productId) &
+                  tbl.cupSize.equals(cupSize) &
+                  tbl.sugarLevel.equals(sugarLevel) &
+                  tbl.iceLevel.equals(iceLevel) &
+                  tbl.toppings.equals(toppings),
+            ))
+            .getSingleOrNull();
 
-  if (existingItem != null) {
-    await update(cartItems).replace(
-      existingItem.copyWith(
-        quantity: existingItem.quantity + quantity,
-        productName: productName,
-        price: price,
-        image: Value(image),
-      ),
-    );
-  } else {
-    await into(cartItems).insert(
-      CartItemsCompanion.insert(
-        productId: productId,
-        productName: productName,
-        price: price,
-        quantity: quantity,
-        image: Value(image),
-      ),
-    );
+    if (existingItem != null) {
+      await update(cartItems).replace(
+        existingItem.copyWith(
+          quantity: existingItem.quantity + quantity,
+          price: price,
+          productName: productName,
+          image: Value(image),
+        ),
+      );
+    } else {
+      await into(cartItems).insert(
+        CartItemsCompanion.insert(
+          productId: productId,
+          productName: productName,
+          price: price,
+          quantity: quantity,
+          image: Value(image),
+          cupSize: Value(cupSize),
+          sugarLevel: Value(sugarLevel),
+          iceLevel: Value(iceLevel),
+          toppings: Value(toppings),
+        ),
+      );
+    }
   }
-}
 
   Future<void> increaseQuantity(int cartItemId) async {
     final item = await (select(
@@ -79,20 +95,21 @@ class CartDao extends DatabaseAccessor<AppDatabase> with _$CartDaoMixin {
   Future<void> clearCart() async {
     await delete(cartItems).go();
   }
+
   Stream<CartSummary> watchCartSummary() {
-  return customSelect(
-    '''
-    SELECT
-      COALESCE(SUM(quantity), 0) AS totalQuantity,
-      COALESCE(SUM(price * quantity), 0) AS totalPrice
-    FROM cart_items
-    ''',
-    readsFrom: {cartItems},
-  ).watchSingle().map(
-    (row) => CartSummary(
-      quantity: row.read<int>('totalQuantity'),
-      totalPrice: row.read<double>('totalPrice'),
-    ),
-  );
-}
+    return customSelect(
+      '''
+      SELECT
+        COALESCE(SUM(quantity), 0) AS totalQuantity,
+        COALESCE(SUM(price * quantity), 0) AS totalPrice
+      FROM cart_items
+      ''',
+      readsFrom: {cartItems},
+    ).watchSingle().map(
+      (row) => CartSummary(
+        quantity: row.read<int>('totalQuantity'),
+        totalPrice: row.read<double>('totalPrice'),
+      ),
+    );
+  }
 }

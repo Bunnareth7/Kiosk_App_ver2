@@ -4,7 +4,18 @@ import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
 
 class CheckoutPriceSummary extends StatelessWidget {
-  const CheckoutPriceSummary({super.key});
+  const CheckoutPriceSummary({
+    super.key,
+    required this.subtotal,
+    required this.discount,
+    required this.serviceCharge,
+    required this.vat,
+  });
+
+  final double subtotal;
+  final double discount;
+  final double serviceCharge;
+  final double vat;
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +26,17 @@ class CheckoutPriceSummary extends StatelessWidget {
         children: [
           _PriceRow(
             title: 'Subtotal (VAT incl.)',
-            value: '\$7.20',
+            value: '\$${subtotal.toStringAsFixed(2)}',
+            titleStyle: AppTextStyle.body2_500,
+            valueStyle: AppTextStyle.body3_500,
           ),
 
           8.verticalSpace,
-
           _PriceRow(
             title: 'Total Discount',
-            value: '-\$2.40',
+            value: '-\$${discount.toStringAsFixed(2)}',
+            titleStyle: AppTextStyle.body2_400,
+            valueStyle: AppTextStyle.body2_400,
             valueColor: AppColor.error500,
           ),
 
@@ -30,14 +44,18 @@ class CheckoutPriceSummary extends StatelessWidget {
 
           _PriceRow(
             title: 'Service Charge',
-            value: '\$1.00',
+            value: '\$${serviceCharge.toStringAsFixed(2)}',
+            titleStyle: AppTextStyle.body2_400,
+            valueStyle: AppTextStyle.body2_400,
           ),
 
           8.verticalSpace,
 
           _PriceRow(
             title: 'VAT',
-            value: '10%',
+            value: '${vat.toStringAsFixed(0)}%',
+            titleStyle: AppTextStyle.body2_400,
+            valueStyle: AppTextStyle.body2_400,
           ),
         ],
       ),
@@ -49,11 +67,15 @@ class _PriceRow extends StatelessWidget {
   const _PriceRow({
     required this.title,
     required this.value,
+    required this.titleStyle,
+    required this.valueStyle,
     this.valueColor,
   });
 
   final String title;
   final String value;
+  final TextStyle titleStyle;
+  final TextStyle valueStyle;
   final Color? valueColor;
 
   @override
@@ -61,17 +83,10 @@ class _PriceRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          title,
-          style: AppTextStyle.body2_500.copyWith(
-            color: AppColor.neutral800,
-          ),
-        ),
+        Text(title, style: titleStyle.copyWith(color: AppColor.neutral800)),
         Text(
           value,
-          style: AppTextStyle.body3_500.copyWith(
-            color: valueColor ?? AppColor.neutral800,
-          ),
+          style: valueStyle.copyWith(color: valueColor ?? AppColor.neutral800),
         ),
       ],
     );

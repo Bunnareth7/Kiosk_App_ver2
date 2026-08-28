@@ -47,6 +47,7 @@ class CheckoutBottomBar extends StatelessWidget {
                 ),
 
                 Text(
+                  
                   '\$${total.toStringAsFixed(2)}',
                   style: AppTextStyle.body2_600.copyWith(
                     color: AppColor.neutral800,

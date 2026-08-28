@@ -56,4 +56,12 @@ class AppPath {
   static const String spacialDeal1 = 'assets/images/spacialDeal1.png';
   static const String spacialDeal2 = 'assets/images/spacialDeal2.png';
   static const String spacialDeal3 = 'assets/images/spacialDeal3.png';
+
+  static const String cash = 'assets/images/cash.png';
+  static const String creditCard = 'assets/images/creditCard.svg';
+  static const String khqrIcon = 'assets/images/KHQR.svg';
+
+  //video
+
+  static const String paymentsuccess = 'assets/video/paymentsuccess.mp4';
 }

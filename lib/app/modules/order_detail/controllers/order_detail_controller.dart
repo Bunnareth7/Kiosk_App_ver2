@@ -15,6 +15,18 @@ class OrderDetailController extends GetxController {
 
   static const List<double> cupSizeExtraPrices = [0, 0.9, 1.8];
 
+  // Option labels
+  static const List<String> cupSizes = ['S', 'M', 'L'];
+
+  static const List<String> sugarLevels = ['0%', '25%', '50%', '75%', '100%'];
+
+  static const List<String> iceLevels = [
+    'No Ice',
+    'Less Ice',
+    'Normal Ice',
+    'Extra Ice',
+  ];
+
   @override
   void onInit() {
     super.onInit();
@@ -61,12 +73,26 @@ class OrderDetailController extends GetxController {
   double get subtotal => unitPrice * quantity.value;
 
   Future<void> addToCart() async {
+    final cupSize = cupSizes[selectedCupSizeIndex.value];
+
+    final sugarLevel = sugarLevels[selectedSugarIndex.value];
+
+    final iceLevel = iceLevels[selectedIceIndex.value];
+
+    final toppings = selectedToppingIndexes
+        .map((index) => index.toString())
+        .join(',');
+
     await cartDao.addToCart(
       productId: product.id,
       productName: product.name,
       price: unitPrice,
       image: product.imagePath,
       quantity: quantity.value,
+      cupSize: cupSize,
+      sugarLevel: sugarLevel,
+      iceLevel: iceLevel,
+      toppings: toppings,
     );
   }
 }

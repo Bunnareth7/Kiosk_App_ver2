@@ -61,7 +61,7 @@ class _ProgressSteps extends StatelessWidget {
           Positioned(
             top: 1.h,
             left: 30.w,
-            right: 50.w,
+            right: 30.w,
             child: Container(
               height:3.h,
               color: AppColor.neutral200,
@@ -83,9 +83,9 @@ class _ProgressSteps extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _step('MENU'),
-              _step('CART'),
-              _step('CHECKOUT'),
+              _step('MENU', isActive: true),
+              _step('CART', isActive: true),
+              _step('CHECKOUT', isActive: false),
             ],
           ),
         ],
@@ -93,7 +93,7 @@ class _ProgressSteps extends StatelessWidget {
     );
   }
 
-  Widget _step(String title) {
+  Widget _step(String title ,{bool isActive = false} ) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -102,12 +102,10 @@ class _ProgressSteps extends StatelessWidget {
           height: 7.w,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: AppColor.mainprimarykoi,
+           color: isActive ? AppColor.mainprimarykoi : AppColor.neutral200,
           ),
         ),
-
         5.verticalSpace,
-
         Text(
           title,
           style: AppTextStyle.body3_500.copyWith(

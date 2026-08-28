@@ -16,6 +16,8 @@ import '../modules/order_detail/bindings/order_detail_binding.dart';
 import '../modules/order_detail/views/order_detail_view.dart';
 import '../modules/ordering_page/bindings/ordering_page_binding.dart';
 import '../modules/ordering_page/views/ordering_page_view.dart';
+import '../modules/payment_success/bindings/payment_success_binding.dart';
+import '../modules/payment_success/views/payment_success_view.dart';
 import '../modules/select_terminal/bindings/select_terminal_binding.dart';
 import '../modules/select_terminal/views/select_terminal_view.dart';
 import '../modules/spacial_deal_screen/bindings/spacial_deal_screen_binding.dart';
@@ -95,6 +97,11 @@ class AppPages {
       name: _Paths.CHECKOUT,
       page: () => const CheckoutView(),
       binding: CheckoutBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAYMENT_SUCCESS,
+      page: () => const PaymentSuccessView(),
+      binding: PaymentSuccessBinding(),
     ),
   ];
 }

@@ -13,12 +13,18 @@ class CheckoutSummary extends GetView<CheckoutController> {
   Widget build(BuildContext context) {
     return Container(
       color: AppColor.neutral100,
+      width: double.infinity,
       padding: EdgeInsets.only(bottom: 8.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.all(16.w),
+            padding: EdgeInsets.only(
+              left: 16.w,
+              top: 16.h,
+              bottom: 8.h,
+              right: 16.w,
+            ),
             child: Text(
               'Summary',
               style: AppTextStyle.body2_600.copyWith(
@@ -45,7 +51,6 @@ class CheckoutSummary extends GetView<CheckoutController> {
                   ),
                 );
               }
-
               final items = snapshot.data ?? [];
 
               if (items.isEmpty) {
@@ -59,14 +64,21 @@ class CheckoutSummary extends GetView<CheckoutController> {
                   ),
                 );
               }
-
               return Column(
                 children: items.map((item) {
                   return CheckoutProductItem(
+                    id: item.id,
                     name: item.productName,
                     quantity: item.quantity,
                     price: item.price,
                     image: item.image,
+                    cupSize: item.cupSize,
+                    sugarLevel: item.sugarLevel,
+                    iceLevel: item.iceLevel,
+                    toppings: item.toppings,
+                    onDelete: () {
+                      controller.deleteCartItem(item.id);
+                    },
                   );
                 }).toList(),
               );
@@ -81,68 +93,155 @@ class CheckoutSummary extends GetView<CheckoutController> {
 class CheckoutProductItem extends StatelessWidget {
   const CheckoutProductItem({
     super.key,
+    required this.id,
     required this.name,
     required this.quantity,
     required this.price,
     required this.image,
+    required this.cupSize,
+    required this.sugarLevel,
+    required this.iceLevel,
+    required this.toppings,
+    required this.onDelete,
   });
 
+  final int id;
   final String name;
   final int quantity;
   final double price;
   final String? image;
 
+  final String cupSize;
+  final String sugarLevel;
+  final String iceLevel;
+  final String toppings;
+
+  final VoidCallback onDelete;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-      child: Row(
-        children: [
-          Text(
-            '$quantity x',
-            style: AppTextStyle.body3_400,
-          ),
+    return Dismissible(
+      key: ValueKey(id),
 
-          12.horizontalSpace,
+      direction: DismissDirection.endToStart,
 
-          Container(
-            width: 42.w,
-            height: 42.w,
-            decoration: BoxDecoration(
-              color: AppColor.neutral50,
-              borderRadius: BorderRadius.circular(8.r),
+      background: Container(
+        margin: EdgeInsets.symmetric(vertical: 8.h),
+        padding: EdgeInsets.only(right: 20.w),
+        alignment: Alignment.centerRight,
+        color: AppColor.error500,
+        child: Icon(Icons.delete_outline, color: Colors.white, size: 24.sp),
+      ),
+
+      confirmDismiss: (direction) async {
+        return true;
+      },
+
+      onDismissed: (direction) {
+        onDelete();
+      },
+
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Quantity
+            SizedBox(
+              width: 28.w,
+              child: Text(
+                '$quantity x',
+                textAlign: TextAlign.center,
+                style: AppTextStyle.body3_500,
+              ),
             ),
-            child: image != null && image!.isNotEmpty
-                ? ClipRRect(
-                    borderRadius: BorderRadius.circular(8.r),
-                    child: Image.asset(image!, fit: BoxFit.contain),
-                  )
-                : Icon(
-                    Icons.local_drink_outlined,
-                    size: 26.sp,
-                    color: AppColor.neutral400,
+
+            8.horizontalSpace,
+
+            // Product image
+            Container(
+              width: 42.w,
+              height: 42.w,
+              decoration: BoxDecoration(
+                color: AppColor.neutral50,
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              child: image != null && image!.isNotEmpty
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(8.r),
+                      child: Image.asset(image!, fit: BoxFit.contain),
+                    )
+                  : Icon(
+                      Icons.local_drink_outlined,
+                      size: 26.sp,
+                      color: AppColor.neutral400,
+                    ),
+            ),
+
+            12.horizontalSpace,
+
+            // Product information
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyle.body3_500.copyWith(
+                      color: AppColor.neutral800,
+                    ),
                   ),
-          ),
 
-          12.horizontalSpace,
+                  3.verticalSpace,
 
-          Expanded(
-            child: Text(
-              name,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: AppTextStyle.body3_500,
+                  Text(
+                    _buildDetails(),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyle.body4_400.copyWith(
+                      color: AppColor.neutral400,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
 
-          12.horizontalSpace,
+            12.horizontalSpace,
 
-          Text(
-            '\$${(price * quantity).toStringAsFixed(2)}',
-            style: AppTextStyle.body3_500.copyWith(color: AppColor.neutral800),
-          ),
-        ],
+            // Price
+            Text(
+              '\$${(price * quantity).toStringAsFixed(2)}',
+              style: AppTextStyle.body3_500.copyWith(
+                color: AppColor.neutral800,
+              ),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  String _buildDetails() {
+    final details = <String>[];
+
+    if (cupSize.isNotEmpty) {
+      details.add(cupSize);
+    }
+
+    if (sugarLevel.isNotEmpty) {
+      details.add(sugarLevel);
+    }
+
+    if (iceLevel.isNotEmpty) {
+      details.add(iceLevel);
+    }
+
+    if (toppings.isNotEmpty) {
+      details.add(toppings);
+    }
+
+    return details.join(' - ');
   }
 }

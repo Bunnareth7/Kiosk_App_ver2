@@ -17,6 +17,7 @@ abstract class Routes {
   static const SPACIAL_DEAL_SCREEN = _Paths.SPACIAL_DEAL_SCREEN;
   static const CART = _Paths.CART;
   static const CHECKOUT = _Paths.CHECKOUT;
+  static const PAYMENT_SUCCESS = _Paths.PAYMENT_SUCCESS;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const SPACIAL_DEAL_SCREEN = '/spacial-deal-screen';
   static const CART = '/cart';
   static const CHECKOUT = '/checkout';
+  static const PAYMENT_SUCCESS = '/payment-success';
 }
