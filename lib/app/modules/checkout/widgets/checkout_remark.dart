@@ -4,22 +4,19 @@ import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
 
 class CheckoutRemark extends StatelessWidget {
-  const CheckoutRemark({
-    super.key,
-    required this.onTap,
-  });
+  const CheckoutRemark({super.key, required this.onTap, required this.remark});
 
   final VoidCallback onTap;
+  final String remark;
 
   @override
   Widget build(BuildContext context) {
+    final hasRemark = remark.isNotEmpty;
+
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: 16.w,
-          vertical: 14.h,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         color: AppColor.neutral100,
         child: Row(
           children: [
@@ -33,17 +30,15 @@ class CheckoutRemark extends StatelessWidget {
             ),
 
             Text(
-              'Add Remark',
+              hasRemark ? remark : 'Add Remark',
               style: AppTextStyle.body3_500.copyWith(
-                color: AppColor.neutral400,
+                color: hasRemark ? AppColor.neutral800 : AppColor.neutral400,
               ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
 
-            Icon(
-              Icons.chevron_right,
-              size: 18.sp,
-              color: AppColor.neutral400,
-            ),
+            Icon(Icons.chevron_right, size: 18.sp, color: AppColor.neutral400),
           ],
         ),
       ),

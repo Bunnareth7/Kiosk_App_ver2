@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'package:kiosk_app/app/modules/checkout/widgets/checkout_tip.dart';
 import 'package:kiosk_app/app/modules/payment_success/views/payment_success_view.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
-
 import '../controllers/checkout_controller.dart';
 import '../widgets/checkout_header.dart';
 import '../widgets/checkout_summary.dart';
@@ -37,35 +35,28 @@ class CheckoutView extends GetView<CheckoutController> {
                   const CheckoutSummary(),
 
                   6.verticalSpace,
+
                   StreamBuilder<double>(
                     stream: controller.subtotal,
-                    builder: (context, subtotalSnapshot) {
-                      final subtotal = subtotalSnapshot.data ?? 0.0;
-
-                      return StreamBuilder<double>(
-                        stream: controller.tip,
-                        builder: (context, tipSnapshot) {
-                          return CheckoutPriceSummary(
-                            subtotal: subtotal,
-                            discount: 0.0,
-                            serviceCharge: 1.00,
-                            vat: 10,
-                          );
-                        },
+                    builder: (context, snapshot) {
+                      final subtotal = snapshot.data ?? 0.0;
+                      return CheckoutPriceSummary(
+                        subtotal: subtotal,
+                        discount: controller.discount.value,
+                        serviceCharge: controller.serviceCharge.value,
+                        vat: controller.vat.value,
                       );
                     },
                   ),
-
                   6.verticalSpace,
 
-                  CheckoutTipSection(controller: controller),
+                  const CheckoutTipSection(),
 
                   6.verticalSpace,
 
                   CheckoutRemark(
-                    onTap: () {
-                      // Add remark later
-                    },
+                    remark: controller.remark.value,
+                    onTap: controller.openRemark,
                   ),
 
                   6.verticalSpace,
@@ -77,18 +68,13 @@ class CheckoutView extends GetView<CheckoutController> {
               ),
             ),
           ),
-          StreamBuilder<double>(
-            stream: controller.total,
-            builder: (context, snapshot) {
-              final total = snapshot.data ?? 0.0;
-
-              return CheckoutBottomBar(
-                total: total,
-                onCheckout: () {
-                  PaymentSuccessView.open(total: total);
-                },
-              );
-            },
+          Obx(
+            () => CheckoutBottomBar(
+              total: controller.total.value,
+              onCheckout: () {
+                PaymentSuccessView.open(total: controller.total.value);
+              },
+            ),
           ),
         ],
       ),

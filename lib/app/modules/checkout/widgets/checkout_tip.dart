@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'package:kiosk_app/app/modules/checkout/controllers/checkout_controller.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
 
-class CheckoutTipSection extends StatelessWidget {
-  const CheckoutTipSection({
-    super.key,
-    required this.controller,
-  });
-
-  final CheckoutController controller;
+class CheckoutTipSection extends GetView<CheckoutController> {
+  const CheckoutTipSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,89 +23,56 @@ class CheckoutTipSection extends StatelessWidget {
               color: AppColor.neutral800,
             ),
           ),
-
           12.verticalSpace,
-
-          Row(
-            children: [
-              Expanded(
-                child: Obx(
-                  () => _TipItem(
+          Obx(
+            () => Row(
+              children: [
+                Expanded(
+                  child: _TipItem(
                     title: 'No Tip',
                     amount: '',
-                    isSelected:
-                        controller.selectedTipIndex.value == 0,
-                    onTap: () {
-                      controller.selectTip(0);
-                    },
+                    isSelected: controller.selectedTipIndex.value == 0,
+                    onTap: () => controller.selectTip(0),
                   ),
                 ),
-              ),
-
-              8.horizontalSpace,
-
-              Expanded(
-                child: Obx(
-                  () => _TipItem(
+                8.horizontalSpace,
+                Expanded(
+                  child: _TipItem(
                     title: '10%',
-                    amount: '\$0.72',
-                    isSelected:
-                        controller.selectedTipIndex.value == 1,
-                    onTap: () {
-                      controller.selectTip(1);
-                    },
+                    amount: '',
+                    isSelected: controller.selectedTipIndex.value == 1,
+                    onTap: () => controller.selectTip(1),
                   ),
                 ),
-              ),
-
-              8.horizontalSpace,
-
-              Expanded(
-                child: Obx(
-                  () => _TipItem(
+                8.horizontalSpace,
+                Expanded(
+                  child: _TipItem(
                     title: '15%',
-                    amount: '\$1.08',
-                    isSelected:
-                        controller.selectedTipIndex.value == 2,
-                    onTap: () {
-                      controller.selectTip(2);
-                    },
+                    amount: '',
+                    isSelected: controller.selectedTipIndex.value == 2,
+                    onTap: () => controller.selectTip(2),
                   ),
                 ),
-              ),
-
-              8.horizontalSpace,
-
-              Expanded(
-                child: Obx(
-                  () => _TipItem(
+                8.horizontalSpace,
+                Expanded(
+                  child: _TipItem(
                     title: '20%',
-                    amount: '\$1.44',
-                    isSelected:
-                        controller.selectedTipIndex.value == 3,
-                    onTap: () {
-                      controller.selectTip(3);
-                    },
+                    amount: '',
+                    isSelected: controller.selectedTipIndex.value == 3,
+                    onTap: () => controller.selectTip(3),
                   ),
                 ),
-              ),
-
-              8.horizontalSpace,
-
-              Expanded(
-                child: Obx(
-                  () => _TipItem(
+                8.horizontalSpace,
+                Expanded(
+                  child: _TipItem(
                     title: 'Custom',
                     amount: '',
-                    isSelected:
-                        controller.selectedTipIndex.value == 4,
-                    onTap: () {
-                      controller.selectTip(4);
-                    },
+                    isSelected: controller.selectedTipIndex.value == 4,
+                    onTap: () => controller.selectTip(4),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
@@ -138,11 +99,10 @@ class _TipItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 32.h,
-        width: 60.64.w,
         decoration: BoxDecoration(
           color: isSelected
               ? AppColor.primarykoi200
-              : AppColor.neutral200,
+              : AppColor.neutral50,
           borderRadius: BorderRadius.circular(6.r),
         ),
         child: Column(
@@ -156,7 +116,6 @@ class _TipItem extends StatelessWidget {
                     : AppColor.neutral500,
               ),
             ),
-
             if (amount.isNotEmpty)
               Text(
                 amount,

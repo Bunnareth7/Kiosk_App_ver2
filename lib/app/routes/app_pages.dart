@@ -18,6 +18,8 @@ import '../modules/ordering_page/bindings/ordering_page_binding.dart';
 import '../modules/ordering_page/views/ordering_page_view.dart';
 import '../modules/payment_success/bindings/payment_success_binding.dart';
 import '../modules/payment_success/views/payment_success_view.dart';
+import '../modules/remark/bindings/remark_binding.dart';
+import '../modules/remark/views/remark_view.dart';
 import '../modules/select_terminal/bindings/select_terminal_binding.dart';
 import '../modules/select_terminal/views/select_terminal_view.dart';
 import '../modules/spacial_deal_screen/bindings/spacial_deal_screen_binding.dart';
@@ -102,6 +104,11 @@ class AppPages {
       name: _Paths.PAYMENT_SUCCESS,
       page: () => const PaymentSuccessView(),
       binding: PaymentSuccessBinding(),
+    ),
+    GetPage(
+      name: _Paths.REMARK,
+      page: () => const RemarkView(),
+      binding: RemarkBinding(),
     ),
   ];
 }

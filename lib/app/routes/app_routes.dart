@@ -18,6 +18,7 @@ abstract class Routes {
   static const CART = _Paths.CART;
   static const CHECKOUT = _Paths.CHECKOUT;
   static const PAYMENT_SUCCESS = _Paths.PAYMENT_SUCCESS;
+  static const REMARK = _Paths.REMARK;
 }
 
 abstract class _Paths {
@@ -37,4 +38,5 @@ abstract class _Paths {
   static const CART = '/cart';
   static const CHECKOUT = '/checkout';
   static const PAYMENT_SUCCESS = '/payment-success';
+  static const REMARK = '/remark';
 }
