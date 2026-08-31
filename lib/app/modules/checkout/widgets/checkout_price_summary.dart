@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kiosk_app/app/modules/apply_coupon/views/apply_coupon_view.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
 
@@ -10,12 +11,14 @@ class CheckoutPriceSummary extends StatelessWidget {
     required this.discount,
     required this.serviceCharge,
     required this.vat,
+    this.onApplyCoupon,
   });
 
   final double subtotal;
   final double discount;
   final double serviceCharge;
   final double vat;
+  final VoidCallback? onApplyCoupon;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +35,17 @@ class CheckoutPriceSummary extends StatelessWidget {
           ),
 
           8.verticalSpace,
+
           _PriceRow(
             title: 'Total Discount',
             value: '-\$${discount.toStringAsFixed(2)}',
             titleStyle: AppTextStyle.body2_400,
             valueStyle: AppTextStyle.body2_400,
             valueColor: AppColor.error500,
+            trailingTitle: '(Apply coupon)',
+            onTrailingTap: () {
+              ApplyCouponView.open();
+            },
           ),
 
           8.verticalSpace,
@@ -70,6 +78,8 @@ class _PriceRow extends StatelessWidget {
     required this.titleStyle,
     required this.valueStyle,
     this.valueColor,
+    this.trailingTitle,
+    this.onTrailingTap,
   });
 
   final String title;
@@ -77,13 +87,31 @@ class _PriceRow extends StatelessWidget {
   final TextStyle titleStyle;
   final TextStyle valueStyle;
   final Color? valueColor;
+  final String? trailingTitle;
+  final VoidCallback? onTrailingTap;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: titleStyle.copyWith(color: AppColor.neutral800)),
+        Row(
+          children: [
+            Text(title, style: titleStyle.copyWith(color: AppColor.neutral800)),
+
+            if (trailingTitle != null) ...[
+              2.horizontalSpace,
+              GestureDetector(
+                onTap: onTrailingTap,
+                child: Text(
+                  trailingTitle!,
+                  style: titleStyle.copyWith(color: AppColor.mainprimarykoi),
+                ),
+              ),
+            ],
+          ],
+        ),
+
         Text(
           value,
           style: valueStyle.copyWith(color: valueColor ?? AppColor.neutral800),

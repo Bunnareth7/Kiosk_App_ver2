@@ -5,7 +5,6 @@ class AnimInkWell extends StatefulWidget {
   final double scaleFactor;
   final VoidCallback onTap;
   final Widget child;
-
   const AnimInkWell({
     super.key,
     this.duration = const Duration(milliseconds: 100),

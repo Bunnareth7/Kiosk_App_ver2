@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/apply_coupon/bindings/apply_coupon_binding.dart';
+import '../modules/apply_coupon/views/apply_coupon_view.dart';
 import '../modules/cart/bindings/cart_binding.dart';
 import '../modules/cart/views/cart_view.dart';
 import '../modules/cart_success/bindings/cart_success_binding.dart';
@@ -109,6 +111,11 @@ class AppPages {
       name: _Paths.REMARK,
       page: () => const RemarkView(),
       binding: RemarkBinding(),
+    ),
+    GetPage(
+      name: _Paths.APPLY_COUPON,
+      page: () => const ApplyCouponView(),
+      binding: ApplyCouponBinding(),
     ),
   ];
 }

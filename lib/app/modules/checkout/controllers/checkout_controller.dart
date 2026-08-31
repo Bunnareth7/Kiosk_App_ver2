@@ -94,5 +94,10 @@ Future<void> openRemark() async {
     remark.value = result;
   }
 }
+Future<void> updateQuantity(int id, int quantity) async {
+  if (quantity <= 0) return;
+
+  await cartDao.updateQuantity(id, quantity);
+}
 }
 

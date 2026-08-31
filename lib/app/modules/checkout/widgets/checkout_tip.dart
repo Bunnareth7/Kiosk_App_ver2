@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:kiosk_app/app/modules/checkout/controllers/checkout_controller.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
+import 'package:kiosk_app/app/widgets/app_inkwell.dart';
 
 class CheckoutTipSection extends GetView<CheckoutController> {
   const CheckoutTipSection({super.key});
@@ -95,7 +96,7 @@ class _TipItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return AnimInkWell(
       onTap: onTap,
       child: Container(
         height: 32.h,

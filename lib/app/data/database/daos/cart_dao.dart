@@ -111,5 +111,18 @@ class CartDao extends DatabaseAccessor<AppDatabase> with _$CartDaoMixin {
         totalPrice: row.read<double>('totalPrice'),
       ),
     );
+  }// update Qty on checkout
+  Future<void> updateQuantity(int cartItemId, int quantity) async {
+  if (quantity <= 0) {
+    await deleteCartItem(cartItemId);
+    return;
   }
+
+  await (update(cartItems)..where((tbl) => tbl.id.equals(cartItemId)))
+      .write(
+    CartItemsCompanion(
+      quantity: Value(quantity),
+    ),
+  );
+}
 }

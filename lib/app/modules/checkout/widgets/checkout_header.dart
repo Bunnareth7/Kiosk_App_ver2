@@ -11,24 +11,17 @@ class CheckoutHeader extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: AppColor.neutral100,
-      padding: EdgeInsets.only(
-        right: 16.w,
-        top :10.h,
-        left: 16.w,
-        
-      ),
+      padding: EdgeInsets.only(right: 16.w, top: 10.h, left: 16.w),
       child: Column(
         children: [
           Text(
             'CHECKOUT',
-            style: AppTextStyle.body2_600.copyWith(
-              color: AppColor.neutral800,
-            ),
+            style: AppTextStyle.body2_600.copyWith(color: AppColor.neutral800),
           ),
           2.verticalSpace,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            
+
             children: [
               Text(
                 'DINE IN',
@@ -37,7 +30,11 @@ class CheckoutHeader extends StatelessWidget {
                 ),
               ),
               4.horizontalSpace,
-              Icon(Icons.arrow_drop_down, size: 16.sp, color: AppColor.neutral500),
+              Icon(
+                Icons.arrow_drop_down,
+                size: 16.sp,
+                color: AppColor.neutral500,
+              ),
             ],
           ),
 
@@ -57,35 +54,37 @@ class _ProgressSteps extends StatelessWidget {
       height: 40.h,
       child: Stack(
         children: [
-          // Background line
           Positioned(
             top: 1.h,
             left: 30.w,
-            right: 30.w,
-            child: Container(
-              height:3.h,
-              color: AppColor.neutral200,
-            ),
+            right: 5.w,
+            child: Container(height: 3.h, color: AppColor.neutral200),
           ),
-
-          // Orange progress line
           Positioned(
             top: 1.h,
-            left: 20.w,
-            width: 135.w,
-            child: Container(
-              height: 3.h,
-              color: AppColor.mainprimarykoi,
-            ),
+            left: 5.w,
+            width: 150.w,
+            child: Container(height: 3.h, color: AppColor.mainprimarykoi),
           ),
-
-          // Step labels
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _step('MENU', isActive: true),
-              _step('CART', isActive: true),
-              _step('CHECKOUT', isActive: false),
+              _step(
+                'MENU',
+                isActive: true,
+                alignment: CrossAxisAlignment.start,
+              ),
+              _step(
+                'CART',
+                isActive: true,
+                alignment: CrossAxisAlignment.center,
+              ),
+              _step(
+                'CHECKOUT',
+                isActive: false,
+                alignment: CrossAxisAlignment.end,
+              ),
             ],
           ),
         ],
@@ -93,24 +92,27 @@ class _ProgressSteps extends StatelessWidget {
     );
   }
 
-  Widget _step(String title ,{bool isActive = false} ) {
+  Widget _step(
+    String title, {
+    bool isActive = false,
+    CrossAxisAlignment alignment = CrossAxisAlignment.center,
+  }) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: alignment,
       children: [
         Container(
           width: 7.w,
           height: 7.w,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-           color: isActive ? AppColor.mainprimarykoi : AppColor.neutral200,
+            color: isActive ? AppColor.mainprimarykoi : AppColor.neutral200,
           ),
         ),
         5.verticalSpace,
         Text(
           title,
-          style: AppTextStyle.body3_500.copyWith(
-            color: AppColor.neutral800,
-          ),
+          style: AppTextStyle.body3_500.copyWith(color: AppColor.neutral800),
         ),
       ],
     );

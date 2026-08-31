@@ -1,20 +1,59 @@
-
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get.dart';
 
 class RemarkController extends GetxController {
-  final remarkController = TextEditingController();
+  final remarkTextController = TextEditingController();
 
-  void saveRemark() {
-    Get.back(result: remarkController.text.trim());
+  final remarks = [
+    'Need Changes',
+    'Soup noodles is packed seperated',
+    'Give security Guard',
+    'Please take ice out side',
+    'Put it on front desk',
+    "Serve fresh, I'm here",
+    'Need extra Coffee',
+    "Don’t call , add TG",
+  ];
+
+  final selectedRemarks = <String>[].obs;
+  final isOtherSelected = false.obs;
+
+  void toggleRemark(String remark) {
+    if (selectedRemarks.contains(remark)) {
+      selectedRemarks.remove(remark);
+    } else {
+      selectedRemarks.add(remark);
+    }
+  }
+
+  void toggleOther() {
+    isOtherSelected.toggle();
+  }
+
+  void clearRemarks() {
+    selectedRemarks.clear();
+    isOtherSelected.value = false;
+    remarkTextController.clear();
+  }
+
+  void submit() {
+    final result = <String>[
+      ...selectedRemarks,
+    ];
+
+    if (isOtherSelected.value &&
+        remarkTextController.text.trim().isNotEmpty) {
+      result.add(remarkTextController.text.trim());
+    }
+
+    Get.back(
+      result: result.join(', '),
+    );
   }
 
   @override
   void onClose() {
-    remarkController.dispose();
+    remarkTextController.dispose();
     super.onClose();
   }
 }
-

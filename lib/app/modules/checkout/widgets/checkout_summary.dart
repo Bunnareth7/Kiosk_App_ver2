@@ -78,7 +78,7 @@ class CheckoutSummary extends GetView<CheckoutController> {
                     toppings: item.toppings,
                     onDelete: () {
                       controller.deleteCartItem(item.id);
-                    },
+                    }, onQuantityChanged: (int value) { controller.updateQuantity(item.id, value); },
                   );
                 }).toList(),
               );
@@ -89,8 +89,7 @@ class CheckoutSummary extends GetView<CheckoutController> {
     );
   }
 }
-
-class CheckoutProductItem extends StatelessWidget {
+class CheckoutProductItem extends StatefulWidget {
   const CheckoutProductItem({
     super.key,
     required this.id,
@@ -103,6 +102,7 @@ class CheckoutProductItem extends StatelessWidget {
     required this.iceLevel,
     required this.toppings,
     required this.onDelete,
+    required this.onQuantityChanged,
   });
 
   final int id;
@@ -115,14 +115,91 @@ class CheckoutProductItem extends StatelessWidget {
   final String sugarLevel;
   final String iceLevel;
   final String toppings;
-
   final VoidCallback onDelete;
+  final ValueChanged<int> onQuantityChanged;
+
+  @override
+  State<CheckoutProductItem> createState() => _CheckoutProductItemState();
+}
+
+class _CheckoutProductItemState extends State<CheckoutProductItem> {
+  late final TextEditingController quantityController;
+  late final FocusNode quantityFocusNode;
+
+  bool isEditingQuantity = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    quantityController = TextEditingController(
+      text: '${widget.quantity}',
+    );
+
+    quantityFocusNode = FocusNode();
+
+    quantityFocusNode.addListener(() {
+      if (!quantityFocusNode.hasFocus && isEditingQuantity) {
+        _saveQuantity();
+      }
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant CheckoutProductItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.quantity != widget.quantity && !isEditingQuantity) {
+      quantityController.text = '${widget.quantity}';
+    }
+  }
+
+  @override
+  void dispose() {
+    quantityController.dispose();
+    quantityFocusNode.dispose();
+    super.dispose();
+  }
+
+  void _startEditingQuantity() {
+    setState(() {
+      isEditingQuantity = true;
+      quantityController.text = '${widget.quantity}';
+      quantityController.selection = TextSelection(
+        baseOffset: 0,
+        extentOffset: quantityController.text.length,
+      );
+    });
+
+    quantityFocusNode.requestFocus();
+  }
+
+  void _saveQuantity() {
+    final value = int.tryParse(quantityController.text);
+
+    if (value == null || value <= 0) {
+      quantityController.text = '${widget.quantity}';
+
+      setState(() {
+        isEditingQuantity = false;
+      });
+
+      return;
+    }
+
+    setState(() {
+      isEditingQuantity = false;
+    });
+
+    if (value != widget.quantity) {
+      widget.onQuantityChanged(value);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: ValueKey(id),
-
+      key: ValueKey(widget.id),
       direction: DismissDirection.endToStart,
 
       background: Container(
@@ -130,7 +207,11 @@ class CheckoutProductItem extends StatelessWidget {
         padding: EdgeInsets.only(right: 20.w),
         alignment: Alignment.centerRight,
         color: AppColor.error500,
-        child: Icon(Icons.delete_outline, color: Colors.white, size: 24.sp),
+        child: Icon(
+          Icons.delete_outline,
+          color : AppColor.neutral100,
+          size: 24.sp,
+        ),
       ),
 
       confirmDismiss: (direction) async {
@@ -138,26 +219,49 @@ class CheckoutProductItem extends StatelessWidget {
       },
 
       onDismissed: (direction) {
-        onDelete();
+        widget.onDelete();
       },
 
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+        padding: EdgeInsets.symmetric(
+          horizontal: 16.w,
+          vertical: 8.h,
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Quantity
             SizedBox(
               width: 28.w,
-              child: Text(
-                '$quantity x',
-                textAlign: TextAlign.center,
-                style: AppTextStyle.body3_500,
+              child: GestureDetector(
+                onTap: _startEditingQuantity,
+                child: isEditingQuantity
+                    ? TextField(
+                        controller: quantityController,
+                        focusNode: quantityFocusNode,
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        style: AppTextStyle.body3_500,
+                        maxLength: 4,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          counterText: '',
+                          isDense: true,
+                          contentPadding: EdgeInsets.zero,
+                        ),
+                        onSubmitted: (_) {
+                          _saveQuantity();
+                        },
+                      )
+                    : Text(
+                        '${widget.quantity} x',
+                        textAlign: TextAlign.center,
+                        style: AppTextStyle.body3_500,
+                      ),
               ),
             ),
 
             8.horizontalSpace,
-
             // Product image
             Container(
               width: 42.w,
@@ -166,10 +270,14 @@ class CheckoutProductItem extends StatelessWidget {
                 color: AppColor.neutral50,
                 borderRadius: BorderRadius.circular(8.r),
               ),
-              child: image != null && image!.isNotEmpty
+              child: widget.image != null &&
+                      widget.image!.isNotEmpty
                   ? ClipRRect(
                       borderRadius: BorderRadius.circular(8.r),
-                      child: Image.asset(image!, fit: BoxFit.contain),
+                      child: Image.asset(
+                        widget.image!,
+                        fit: BoxFit.contain,
+                      ),
                     )
                   : Icon(
                       Icons.local_drink_outlined,
@@ -186,7 +294,7 @@ class CheckoutProductItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    widget.name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: AppTextStyle.body3_500.copyWith(
@@ -212,7 +320,7 @@ class CheckoutProductItem extends StatelessWidget {
 
             // Price
             Text(
-              '\$${(price * quantity).toStringAsFixed(2)}',
+              '\$${(widget.price * widget.quantity).toStringAsFixed(2)}',
               style: AppTextStyle.body3_500.copyWith(
                 color: AppColor.neutral800,
               ),
@@ -226,20 +334,20 @@ class CheckoutProductItem extends StatelessWidget {
   String _buildDetails() {
     final details = <String>[];
 
-    if (cupSize.isNotEmpty) {
-      details.add(cupSize);
+    if (widget.cupSize.isNotEmpty) {
+      details.add(widget.cupSize);
     }
 
-    if (sugarLevel.isNotEmpty) {
-      details.add(sugarLevel);
+    if (widget.sugarLevel.isNotEmpty) {
+      details.add(widget.sugarLevel);
     }
 
-    if (iceLevel.isNotEmpty) {
-      details.add(iceLevel);
+    if (widget.iceLevel.isNotEmpty) {
+      details.add(widget.iceLevel);
     }
 
-    if (toppings.isNotEmpty) {
-      details.add(toppings);
+    if (widget.toppings.isNotEmpty) {
+      details.add(widget.toppings);
     }
 
     return details.join(' - ');
