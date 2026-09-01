@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:kiosk_app/app/constants/app_decoration.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
+import 'package:kiosk_app/app/widgets/app_inkwell.dart';
 import '../controllers/home_controller.dart';
 import 'home_category.dart';
 
@@ -27,7 +28,7 @@ class HomeSidebar extends StatelessWidget {
         itemBuilder: (context, index) {
           return Obx(() {
             final isSelected = controller.selectedCategory.value == index;
-            return InkWell(
+            return AnimInkWell(
               onTap: () => controller.selectedCategory.value = index,
               child: Container(
                 decoration: BoxDecoration(

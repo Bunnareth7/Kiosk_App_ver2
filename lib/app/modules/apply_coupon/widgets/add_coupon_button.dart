@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
+import 'package:kiosk_app/app/widgets/app_inkwell.dart';
 import 'package:kiosk_app/app/modules/apply_coupon/widgets/dash_border.dart';
 
 
@@ -12,9 +13,8 @@ class AddCouponButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return AnimInkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(12.r),
       child: DashedRectBorder(
         color: AppColor.mainprimarykoi,
         borderRadius: 12.r,

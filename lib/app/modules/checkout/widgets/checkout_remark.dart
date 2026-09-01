@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
+import 'package:kiosk_app/app/widgets/app_inkwell.dart';
 
 class CheckoutRemark extends StatelessWidget {
   const CheckoutRemark({super.key, required this.onTap, required this.remark});
@@ -13,7 +14,7 @@ class CheckoutRemark extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasRemark = remark.isNotEmpty;
 
-    return InkWell(
+    return AnimInkWell(
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),

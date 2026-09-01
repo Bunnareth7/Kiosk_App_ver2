@@ -27,7 +27,7 @@ class LoginView extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    GestureDetector(
+                    AnimInkWell(
                       onTap: () => Get.back(),
                       child: SvgPicture.asset(
                         AppPath.arrow1,

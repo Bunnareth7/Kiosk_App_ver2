@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kiosk_app/app/modules/apply_coupon/views/apply_coupon_view.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
+import 'package:kiosk_app/app/widgets/app_inkwell.dart';
 
 class CheckoutPriceSummary extends StatelessWidget {
   const CheckoutPriceSummary({
@@ -101,7 +102,7 @@ class _PriceRow extends StatelessWidget {
 
             if (trailingTitle != null) ...[
               2.horizontalSpace,
-              GestureDetector(
+              AnimInkWell(
                 onTap: onTrailingTap,
                 child: Text(
                   trailingTitle!,

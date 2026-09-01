@@ -126,7 +126,7 @@ class QuantityStepper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        InkWell(
+        AnimInkWell(
           onTap: onDecrement,
           child: Padding(
             padding: EdgeInsets.all(4.w),
@@ -143,7 +143,7 @@ class QuantityStepper extends StatelessWidget {
           ),
         ),
 
-        InkWell(
+        AnimInkWell(
           onTap: onIncrement,
           child: Padding(
             padding: EdgeInsets.all(4.w),

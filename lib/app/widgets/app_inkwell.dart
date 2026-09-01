@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AnimInkWell extends StatefulWidget {
   final Duration duration;
   final double scaleFactor;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final Widget child;
   const AnimInkWell({
     super.key,
@@ -53,7 +53,7 @@ class _AnimInkWellState extends State<AnimInkWell>
   void _onTapUp(TapUpDetails details) {
     Future.delayed(widget.duration, () {
       _controller.reverse().then((_) {
-        widget.onTap();
+        widget.onTap?.call();
       });
     });
   }

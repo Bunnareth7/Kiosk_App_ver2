@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
+import 'package:kiosk_app/app/widgets/app_inkwell.dart';
 
 import '../controllers/remark_controller.dart';
 
@@ -104,17 +105,20 @@ class RemarkView extends GetView<RemarkController> {
             child: SizedBox(
               width: double.infinity,
               height: 48.h,
-              child: ElevatedButton(
-                onPressed: controller.submit,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColor.mainprimarykoi,
-                  shape: RoundedRectangleBorder(
+              child: AnimInkWell(
+                onTap: controller.submit,
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: AppColor.mainprimarykoi,
                     borderRadius: BorderRadius.circular(8.r),
                   ),
-                ),
-                child: Text(
-                  'Submit',
-                  style: AppTextStyle.body3_600.copyWith(color: Colors.white),
+                  child: Text(
+                    'Submit',
+                    style: AppTextStyle.body3_600.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -140,9 +144,8 @@ class _RemarkChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return AnimInkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(6.r),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 11.h),
         decoration: BoxDecoration(

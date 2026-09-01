@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
+import 'package:kiosk_app/app/widgets/app_inkwell.dart';
 
 class CheckoutBottomBar extends StatelessWidget {
   const CheckoutBottomBar({
@@ -61,19 +62,19 @@ class CheckoutBottomBar extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 44.h,
-              child: ElevatedButton(
-                onPressed: onCheckout,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColor.mainprimarykoi,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
+              child: AnimInkWell(
+                onTap: onCheckout,
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: AppColor.mainprimarykoi,
                     borderRadius: BorderRadius.circular(8.r),
                   ),
-                ),
-                child: Text(
-                  'CHECK OUT',
-                  style: AppTextStyle.body2_600.copyWith(
-                    color: AppColor.neutral100,
+                  child: Text(
+                    'CHECK OUT',
+                    style: AppTextStyle.body2_600.copyWith(
+                      color: AppColor.neutral100,
+                    ),
                   ),
                 ),
               ),

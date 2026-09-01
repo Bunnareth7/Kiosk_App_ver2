@@ -5,6 +5,7 @@ import 'package:kiosk_app/app/data/database/app_database.dart';
 import 'package:kiosk_app/app/modules/checkout/controllers/checkout_controller.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
+import 'package:kiosk_app/app/widgets/app_inkwell.dart';
 
 class CheckoutSummary extends GetView<CheckoutController> {
   const CheckoutSummary({super.key});
@@ -233,7 +234,7 @@ class _CheckoutProductItemState extends State<CheckoutProductItem> {
             // Quantity
             SizedBox(
               width: 28.w,
-              child: GestureDetector(
+              child: AnimInkWell(
                 onTap: _startEditingQuantity,
                 child: isEditingQuantity
                     ? TextField(

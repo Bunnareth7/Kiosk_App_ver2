@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kiosk_app/app/constants/app_path.dart';
+import 'package:kiosk_app/app/modules/apply_coupon/widgets/add_coupon_dialog.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
@@ -24,7 +27,7 @@ class ApplyCouponView extends GetView<ApplyCouponController> {
         elevation: 0,
         leading: IconButton(
           onPressed: Get.back,
-          icon: Icon(Icons.arrow_back_ios_new, size: 18.sp),
+          icon: SvgPicture.asset(AppPath.backbutton, width: 18.w),
         ),
         title: Text('Apply Coupon', style: AppTextStyle.body1_600),
         centerTitle: true,
@@ -34,7 +37,12 @@ class ApplyCouponView extends GetView<ApplyCouponController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AddCouponButton(onTap: controller.onAddCouponTap),
+            AddCouponButton(
+              onTap: () async {
+                final code = await AddCouponDialog.show();
+                if (code != null) {}
+              },
+            ),
             20.verticalSpace,
             Text(
               'Available Coupon',

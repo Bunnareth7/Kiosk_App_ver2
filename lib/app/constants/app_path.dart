@@ -64,4 +64,5 @@ class AppPath {
   //video
 
   static const String paymentsuccess = 'assets/video/paymentsuccess.mp4';
+  static const String qrCode = 'assets/images/QR.svg';
 }
