@@ -25,12 +25,12 @@ class SugarLevelSection extends StatelessWidget {
   ];
 
   static const List<String> imagePaths = [
-    AppPath.emptyImage,
-    AppPath.emptyImage,
-    AppPath.emptyImage,
-    AppPath.emptyImage,
-    AppPath.emptyImage,
-    AppPath.emptyImage,
+    AppPath.sugar20,
+    AppPath.sugar50,
+    AppPath.sugar70,
+    AppPath.sugar70,
+    AppPath.sugar70,
+    AppPath.sugar70,
   ];
 
   @override

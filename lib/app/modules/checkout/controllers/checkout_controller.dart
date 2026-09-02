@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:kiosk_app/app/data/database/app_database.dart';
 import 'package:kiosk_app/app/data/database/daos/cart_dao.dart';
+import 'package:kiosk_app/app/modules/checkout/widgets/tip_dialog.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
 
 class CheckoutController extends GetxController {
@@ -47,9 +48,19 @@ class CheckoutController extends GetxController {
     await cartDao.deleteCartItem(id);
   }
 
-  void selectTip(int index) {
+  Future<void> selectTip(int index) async {
     selectedTipIndex.value = index;
-    calculateTotal();
+
+    if (index == 4) {
+      final value = await CustomTipDialog.show();
+
+      if (value != null) {
+        setCustomTip(value);
+      }
+    } else {
+      customTip.value = 0.0;
+      calculateTotal();
+    }
   }
 
   void setCustomTip(double amount) {
@@ -85,19 +96,20 @@ class CheckoutController extends GetxController {
   void selectPayment(int index) {
     selectedPaymentIndex.value = index;
   }
+
   final remark = ''.obs;
 
-Future<void> openRemark() async {
-  final result = await Get.toNamed(Routes.REMARK);
+  Future<void> openRemark() async {
+    final result = await Get.toNamed(Routes.REMARK);
 
-  if (result != null) {
-    remark.value = result;
+    if (result != null) {
+      remark.value = result;
+    }
+  }
+
+  Future<void> updateQuantity(int id, int quantity) async {
+    if (quantity <= 0) return;
+
+    await cartDao.updateQuantity(id, quantity);
   }
 }
-Future<void> updateQuantity(int id, int quantity) async {
-  if (quantity <= 0) return;
-
-  await cartDao.updateQuantity(id, quantity);
-}
-}
-

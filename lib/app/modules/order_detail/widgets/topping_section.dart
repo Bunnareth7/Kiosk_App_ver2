@@ -7,9 +7,13 @@ import 'package:kiosk_app/app/modules/order_detail/widgets/order_option_header.d
 import 'option_chip.dart';
 
 class ToppingSection extends StatelessWidget {
-  const ToppingSection({super.key, required this.selectedIndexes, required this.onToggle});
+  const ToppingSection({
+    super.key,
+    required this.selectedIndexes,
+    required this.onToggle,
+  });
 
-   final Set<int> selectedIndexes;
+  final Set<int> selectedIndexes;
   final ValueChanged<int> onToggle;
 
   static const List<String> labels = [
@@ -19,10 +23,10 @@ class ToppingSection extends StatelessWidget {
     'Konjac Ball',
   ];
   static const List<String> imagePaths = [
-    AppPath.emptyImage,
-    AppPath.emptyImage,
-    AppPath.emptyImage,
-    AppPath.emptyImage,
+    AppPath.bubble,
+    AppPath.goldenbubble,
+    AppPath.goldenbubble,
+    AppPath.konjakball,
   ];
   @override
   Widget build(BuildContext context) {

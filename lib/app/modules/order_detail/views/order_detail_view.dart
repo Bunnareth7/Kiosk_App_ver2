@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kiosk_app/app/constants/app_decoration.dart';
 import 'package:kiosk_app/app/modules/cart_success/views/cart_success_view.dart';
-import 'package:kiosk_app/app/modules/home/controllers/home_controller.dart';
 import 'package:kiosk_app/app/modules/order_detail/widgets/order_button_bar.dart';
 import 'package:kiosk_app/app/modules/order_detail/widgets/order_detail_header.dart';
 import 'package:kiosk_app/app/modules/order_detail/widgets/order_detail_info.dart';

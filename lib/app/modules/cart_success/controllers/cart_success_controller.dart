@@ -9,7 +9,7 @@ class CartSuccessController extends GetxController {
   void onInit() {
     super.onInit();
 
-    _timer = Timer(const Duration(seconds: 4), () {
+    _timer = Timer(const Duration(seconds: 2), () {
       if (Get.currentRoute == '/cart-success') {
         SpacialDealScreenView.open();
       }

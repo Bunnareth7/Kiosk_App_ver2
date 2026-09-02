@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
+import 'package:kiosk_app/app/modules/apply_coupon/widgets/scan_coupon_dialog.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
 import 'package:kiosk_app/app/widgets/app_inkwell.dart';
@@ -15,7 +18,14 @@ class AddCouponDialog extends StatelessWidget {
   final TextEditingController _codeController = TextEditingController();
 
   static Future<String?> show() {
-    return Get.dialog<String>(AddCouponDialog(), barrierDismissible: true);
+    return Get.dialog<String>(
+      BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+        child: AddCouponDialog(),
+      ),
+      barrierDismissible: true,
+      barrierColor: Colors.black.withValues(alpha: 0.25),
+    );
   }
 
   @override
@@ -32,10 +42,10 @@ class AddCouponDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Add Coupon', style: AppTextStyle.body1_700),
+              Center(child: Text('Add Coupon', style: AppTextStyle.body2_700)),
+
               20.verticalSpace,
 
-              // Code input field
               SizedBox(
                 height: 42.h,
                 width: 220.w,
@@ -53,12 +63,16 @@ class AddCouponDialog extends StatelessWidget {
                     ),
                     isDense: true,
                     suffixIcon: Padding(
-                      padding: EdgeInsets.all(10.r),
-                      child: SvgPicture.asset(
-                        AppPath.qrCode,
-                        width: 18.w,
-                        height: 18.w,
-                        
+                      padding: EdgeInsets.all(10),
+                      child: AnimInkWell(
+                        onTap: () { 
+                          ScanCouponDialog.show();
+                         },
+                        child: SvgPicture.asset(
+                          AppPath.qrCode,
+                          width: 20.w,
+                          height: 20.w,
+                        ),
                       ),
                     ),
                     contentPadding: EdgeInsets.symmetric(
@@ -69,7 +83,7 @@ class AddCouponDialog extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8.r),
                       borderSide: BorderSide(
                         width: 0.5,
-                        color: AppColor.neutral400,
+                        color: AppColor.neutral500,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
@@ -82,8 +96,9 @@ class AddCouponDialog extends StatelessWidget {
                   ),
                 ),
               ),
+
               10.verticalSpace,
-              // Cancel / Apply buttons
+
               Row(
                 children: [
                   Expanded(
@@ -94,9 +109,7 @@ class AddCouponDialog extends StatelessWidget {
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            border: Border.all(
-                              color: AppColor.mainprimarykoi,
-                            ),
+                            border: Border.all(color: AppColor.mainprimarykoi),
                             borderRadius: BorderRadius.circular(10.r),
                           ),
                           child: Text(
@@ -109,13 +122,16 @@ class AddCouponDialog extends StatelessWidget {
                       ),
                     ),
                   ),
+
                   10.horizontalSpace,
+
                   Expanded(
                     child: SizedBox(
                       height: 32.h,
                       child: AnimInkWell(
                         onTap: () {
                           final code = _codeController.text.trim();
+
                           if (code.isEmpty) return;
 
                           Get.back(result: code);

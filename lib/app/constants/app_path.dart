@@ -36,6 +36,7 @@ class AppPath {
   static const String overflowKoi = 'assets/images/overflow_koi.svg';
   static const String promo2 = 'assets/images/promo2.png';
   static const String promo3 = 'assets/images/promo3.jpg';
+  static const String promo4 = 'assets/images/imageSlider2.jpg';
   static const String monakomLogoSource =
       'assets/images/source_MONAKOM LOGO_007-02.png';
   static const String startScreen = 'assets/images/start_screen.jpg';
@@ -48,6 +49,15 @@ class AppPath {
   static const String lessIce = 'assets/images/lessIce.png';
   static const String normalIce = 'assets/images/normal_Ice.png';
   static const String moreIce = 'assets/images/moreIce.png';
+
+  //sugar level
+  static const String sugar20 = 'assets/images/sugar20.svg';
+  static const String sugar50 = 'assets/images/sugar50.svg';
+  static const String sugar70 = 'assets/images/sugar70.svg';
+  //topping 
+  static const String konjakball = 'assets/images/konjakball.png';
+  static const String bubble = 'assets/images/bubble.png';
+  static const String goldenbubble = 'assets/images/goldenbubble.png';
   // cart success
   static const String shoppingCart = 'assets/images/add_shopping_cart.svg';
   static const String checkGif = 'assets/images/success.gif';
@@ -65,4 +75,7 @@ class AppPath {
 
   static const String paymentsuccess = 'assets/video/paymentsuccess.mp4';
   static const String qrCode = 'assets/images/QR.svg';
+  static const String koiWalletqr = 'assets/images/koi_wallet_qr.svg';
+
+  
 }

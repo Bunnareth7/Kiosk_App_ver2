@@ -30,7 +30,7 @@ class _CartSuccessViewState extends State<CartSuccessView> {
   void initState() {
     super.initState();
 
-    _timer = Timer(const Duration(seconds: 4), () {
+    _timer = Timer(const Duration(seconds: 2), () {
       if (mounted) {
         SpacialDealScreenView.open();
       }
@@ -49,7 +49,7 @@ class _CartSuccessViewState extends State<CartSuccessView> {
     final subtotal = arguments?['subtotal'] ?? 0.0;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.neutral100,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -77,7 +77,7 @@ class _CartSuccessViewState extends State<CartSuccessView> {
                       height: 38.w,
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.white,
+                        color: AppColor.neutral100,
                       ),
                       padding: EdgeInsets.all(2.w),
                       child: ClipOval(

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kiosk_app/app/modules/checkout/widgets/checkout_tip.dart';
-import 'package:kiosk_app/app/modules/payment_success/views/payment_success_view.dart';
+import 'package:kiosk_app/app/modules/checkout/widgets/koi_wallet_dialog.dart';
+import 'package:kiosk_app/app/modules/checkout/widgets/payment_method_dialog.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
+
 import '../controllers/checkout_controller.dart';
 import '../widgets/checkout_header.dart';
 import '../widgets/checkout_summary.dart';
@@ -40,6 +42,7 @@ class CheckoutView extends GetView<CheckoutController> {
                     stream: controller.subtotal,
                     builder: (context, snapshot) {
                       final subtotal = snapshot.data ?? 0.0;
+
                       return CheckoutPriceSummary(
                         subtotal: subtotal,
                         discount: controller.discount.value,
@@ -48,6 +51,7 @@ class CheckoutView extends GetView<CheckoutController> {
                       );
                     },
                   ),
+
                   6.verticalSpace,
 
                   const CheckoutTipSection(),
@@ -68,11 +72,16 @@ class CheckoutView extends GetView<CheckoutController> {
               ),
             ),
           ),
+
           Obx(
             () => CheckoutBottomBar(
               total: controller.total.value,
               onCheckout: () {
-                PaymentSuccessView.open(total: controller.total.value);
+                if (controller.selectedPaymentIndex.value == 0) {
+                  KoiWalletDialog.show(total: controller.total.value);
+                } else {
+                  PaymentInformationDialog.show();
+                }
               },
             ),
           ),

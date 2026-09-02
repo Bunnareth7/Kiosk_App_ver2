@@ -17,7 +17,7 @@ class OrderingView extends StatefulWidget {
 class _OrderingViewState extends State<OrderingView> {
   final List<String> imageList = [
     AppPath.startScreen,
-    AppPath.promo2,
+    AppPath.promo4,
     AppPath.promo3,
   ];
   int _currentIndex = 0;
