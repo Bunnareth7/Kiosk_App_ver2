@@ -1,35 +1,36 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
 
-class ScanCouponDialog extends StatefulWidget {
+class ScanCouponDialog extends StatelessWidget {
   const ScanCouponDialog({super.key});
 
   static void show() {
     Get.dialog(
-      ScanCouponDialog(),
+      BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+        child: const ScanCouponDialog(),
+      ),
       barrierDismissible: false,
-      barrierColor: Colors.black54,
+      barrierColor: Colors.black.withValues(alpha: 0.10),
     );
   }
 
   @override
-  State<ScanCouponDialog> createState() => _ScanCouponDialogState();
-}
-
-class _ScanCouponDialogState extends State<ScanCouponDialog> {
-  @override
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: AppColor.neutral100,
-      insetPadding: EdgeInsets.symmetric(horizontal: 68.w),
+      insetPadding: EdgeInsets.symmetric(horizontal: 24.w),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
       child: SizedBox(
-        width: 270.w,
+        width: 235.w,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
           child: Column(
@@ -37,15 +38,15 @@ class _ScanCouponDialogState extends State<ScanCouponDialog> {
             children: [
               Text('Scan Coupon', style: AppTextStyle.body2_700),
 
-              18.verticalSpace,
+              20.verticalSpace,
 
               SizedBox(
-                width: 130.w,
-                height: 130.w,
+                width: 125.w,
+                height: 125.w,
                 child: SvgPicture.asset(AppPath.koiWalletqr),
               ),
 
-              14.verticalSpace,
+              20.verticalSpace,
 
               Text(
                 'Scan QR code to log in and access \n coupon rewards!',
@@ -53,10 +54,10 @@ class _ScanCouponDialogState extends State<ScanCouponDialog> {
                 style: AppTextStyle.body3_400,
               ),
 
-              14.verticalSpace,
+              20.verticalSpace,
 
               SizedBox(
-                width: double.infinity,
+                width: 203.w,
                 height: 32.h,
                 child: GestureDetector(
                   onTap: () => Get.back(),

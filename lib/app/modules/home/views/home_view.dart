@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:kiosk_app/app/constants/app_decoration.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
 import 'package:kiosk_app/app/modules/home/widgets/home_header.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
+import 'package:kiosk_app/app/theme/app_color.dart';
 
 import '../controllers/home_controller.dart';
 import '../widgets/home_category.dart';
@@ -32,40 +32,43 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: const CostumHomeAppbar(),
-      body: Stack(
+      backgroundColor: AppColor.neutral100,
+      body: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.only(bottom: 80.h),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          const CostumHomeAppbar(),
+          Expanded(
+            child: Stack(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: AppDecoration.paddingM10),
-                  child: HomeSidebar(
-                    controller: controller,
-                    categories: _categories,
+                  padding: EdgeInsets.only(bottom: 80.h),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      HomeSidebar(
+                        controller: controller,
+                        categories: _categories,
+                      ),
+                      const Expanded(child: HomeProductGrid()),
+                    ],
                   ),
                 ),
-                const Expanded(child: HomeProductGrid()),
+                Obx(() {
+                  if (controller.cartItemCount.value == 0) {
+                    return const SizedBox.shrink();
+                  }
+                  return Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 15.h,
+                    child: ViewCartButton(
+                      quantity: controller.cartItemCount.value,
+                      totalPrice: controller.cartTotalPrice.value,
+                    ),
+                  );
+                }),
               ],
             ),
           ),
-          Obx(() {
-            if (controller.cartItemCount.value == 0) {
-              return const SizedBox.shrink();
-            }
-            return Positioned(
-              left: 0,
-              right: 0,
-              bottom: 20.h,
-              child: ViewCartButton(
-                quantity: controller.cartItemCount.value,
-                totalPrice: controller.cartTotalPrice.value,
-              ),
-            );
-          }),
         ],
       ),
     );

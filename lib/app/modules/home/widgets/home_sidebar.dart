@@ -52,7 +52,7 @@ class HomeSidebar extends StatelessWidget {
                     Text(
                       categories[index].label,
                       textAlign: TextAlign.center,
-                      style: AppTextStyle.body3_400.copyWith(
+                      style: AppTextStyle.body3_600.copyWith(
                         color: isSelected
                             ? AppColor.mainprimarykoi
                             : Colors.grey,

@@ -6,6 +6,7 @@ import 'package:kiosk_app/app/modules/checkout/controllers/checkout_controller.d
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
 import 'package:kiosk_app/app/widgets/app_inkwell.dart';
+import 'package:kiosk_app/app/widgets/number_pad.dart';
 
 class CheckoutSummary extends GetView<CheckoutController> {
   const CheckoutSummary({super.key});
@@ -79,7 +80,10 @@ class CheckoutSummary extends GetView<CheckoutController> {
                     toppings: item.toppings,
                     onDelete: () {
                       controller.deleteCartItem(item.id);
-                    }, onQuantityChanged: (int value) { controller.updateQuantity(item.id, value); },
+                    },
+                    onQuantityChanged: (int value) {
+                      controller.updateQuantity(item.id, value);
+                    },
                   );
                 }).toList(),
               );
@@ -90,6 +94,7 @@ class CheckoutSummary extends GetView<CheckoutController> {
     );
   }
 }
+
 class CheckoutProductItem extends StatefulWidget {
   const CheckoutProductItem({
     super.key,
@@ -124,73 +129,100 @@ class CheckoutProductItem extends StatefulWidget {
 }
 
 class _CheckoutProductItemState extends State<CheckoutProductItem> {
-  late final TextEditingController quantityController;
-  late final FocusNode quantityFocusNode;
-
-  bool isEditingQuantity = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    quantityController = TextEditingController(
-      text: '${widget.quantity}',
-    );
-
-    quantityFocusNode = FocusNode();
-
-    quantityFocusNode.addListener(() {
-      if (!quantityFocusNode.hasFocus && isEditingQuantity) {
-        _saveQuantity();
-      }
-    });
-  }
-
-  @override
-  void didUpdateWidget(covariant CheckoutProductItem oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (oldWidget.quantity != widget.quantity && !isEditingQuantity) {
-      quantityController.text = '${widget.quantity}';
-    }
-  }
+  OverlayEntry? _overlayEntry;
+  bool _isEditingQuantity = false;
+  String _digits = '';
 
   @override
   void dispose() {
-    quantityController.dispose();
-    quantityFocusNode.dispose();
+    _removeOverlay();
     super.dispose();
   }
 
   void _startEditingQuantity() {
+    if (_isEditingQuantity) return;
+
     setState(() {
-      isEditingQuantity = true;
-      quantityController.text = '${widget.quantity}';
-      quantityController.selection = TextSelection(
-        baseOffset: 0,
-        extentOffset: quantityController.text.length,
-      );
+      _isEditingQuantity = true;
+      _digits = '';
     });
 
-    quantityFocusNode.requestFocus();
+    _showNumberPadOverlay();
+  }
+
+  void _showNumberPadOverlay() {
+    final overlay = Overlay.of(context);
+
+    _overlayEntry = OverlayEntry(
+      builder: (context) {
+        return Stack(
+          children: [
+            // Tap outside the keypad saves the current value, like losing focus
+            Positioned.fill(
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: _saveQuantity,
+                child: Container(color: Colors.transparent),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: NumberPad(
+                onDigit: _onDigitTap,
+                onBackspace: _onBackspace,
+                onConfirm: _saveQuantity,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    overlay.insert(_overlayEntry!);
+  }
+
+  void _removeOverlay() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
+  void _onDigitTap(String digit) {
+    setState(() {
+      if (_digits.isEmpty) {
+        _digits = digit;
+      } else if (_digits.length < 4) {
+        _digits += digit;
+      }
+    });
+  }
+
+  void _onBackspace() {
+    setState(() {
+      if (_digits.length <= 1) {
+        _digits = '';
+      } else {
+        _digits = _digits.substring(0, _digits.length - 1);
+      }
+    });
   }
 
   void _saveQuantity() {
-    final value = int.tryParse(quantityController.text);
-
-    if (value == null || value <= 0) {
-      quantityController.text = '${widget.quantity}';
-
-      setState(() {
-        isEditingQuantity = false;
-      });
-
-      return;
-    }
+    _removeOverlay();
 
     setState(() {
-      isEditingQuantity = false;
+      _isEditingQuantity = false;
     });
+
+    // Nothing typed — leave quantity unchanged.
+    if (_digits.isEmpty) return;
+
+    final value = int.tryParse(_digits);
+    if (value == null) return;
+
+    if (value == 0) {
+      widget.onDelete();
+      return;
+    }
 
     if (value != widget.quantity) {
       widget.onQuantityChanged(value);
@@ -210,7 +242,7 @@ class _CheckoutProductItemState extends State<CheckoutProductItem> {
         color: AppColor.error500,
         child: Icon(
           Icons.delete_outline,
-          color : AppColor.neutral100,
+          color: AppColor.neutral100,
           size: 24.sp,
         ),
       ),
@@ -224,35 +256,37 @@ class _CheckoutProductItemState extends State<CheckoutProductItem> {
       },
 
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 16.w,
-          vertical: 8.h,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Quantity
+            // Quantity — tap to edit inline, keypad slides up from bottom
             SizedBox(
               width: 28.w,
               child: AnimInkWell(
                 onTap: _startEditingQuantity,
-                child: isEditingQuantity
-                    ? TextField(
-                        controller: quantityController,
-                        focusNode: quantityFocusNode,
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        style: AppTextStyle.body3_500,
-                        maxLength: 4,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          counterText: '',
-                          isDense: true,
-                          contentPadding: EdgeInsets.zero,
-                        ),
-                        onSubmitted: (_) {
-                          _saveQuantity();
-                        },
+                child: _isEditingQuantity
+                    ? Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            color: AppColor.mainprimarykoi.withValues(
+                              alpha: 0.12,
+                            ),
+                            padding: EdgeInsets.symmetric(horizontal: 2.w),
+                            child: Text(
+                              _digits.isEmpty ? '${widget.quantity}' : _digits,
+                              style: AppTextStyle.body3_500,
+                            ),
+                          ),
+                          Container(
+                            width: 1.5.w,
+                            height: 14.h,
+                            margin: EdgeInsets.symmetric(horizontal: 1.w),
+                            color: AppColor.mainprimarykoi,
+                          ),
+                          Text('x', style: AppTextStyle.body3_500),
+                        ],
                       )
                     : Text(
                         '${widget.quantity} x',
@@ -271,14 +305,10 @@ class _CheckoutProductItemState extends State<CheckoutProductItem> {
                 color: AppColor.neutral50,
                 borderRadius: BorderRadius.circular(8.r),
               ),
-              child: widget.image != null &&
-                      widget.image!.isNotEmpty
+              child: widget.image != null && widget.image!.isNotEmpty
                   ? ClipRRect(
                       borderRadius: BorderRadius.circular(8.r),
-                      child: Image.asset(
-                        widget.image!,
-                        fit: BoxFit.contain,
-                      ),
+                      child: Image.asset(widget.image!, fit: BoxFit.contain),
                     )
                   : Icon(
                       Icons.local_drink_outlined,

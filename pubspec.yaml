@@ -78,8 +78,6 @@ flutter:
     - assets/images/greentea.png
     - assets/images/bubblemilktea.png
 
-
-    
   # icons:
     - assets/icons/ActionIcon.svg
     - assets/icons/Profile.svg
@@ -98,6 +96,28 @@ flutter:
     - assets/icons/IconKio-6.svg
     - assets/icons/IconKio-5.svg
     - assets/icons/IconKio.svg
+
+  fonts:
+    - family: SFProText
+      fonts:
+        - asset: assets/fonts/SF-Pro-Text-Regular (3).otf
+          weight: 400
+        - asset: assets/fonts/SF-Pro-Text-Medium (3).otf
+          weight: 500
+        - asset: assets/fonts/SF-Pro-Text-SemiBold (3).otf
+          weight: 600
+        - asset: assets/fonts/SF-Pro-Text-Bold (3).otf
+          weight: 700
+    - family: KantumruyPro
+      fonts:
+        - asset: assets/fonts/KantumruyPro-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/KantumruyPro-Medium (3).ttf
+          weight: 500
+        - asset: assets/fonts/KantumruyPro-SemiBold (3).ttf
+          weight: 600
+        - asset: assets/fonts/KantumruyPro-Bold (3).ttf
+          weight: 700
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

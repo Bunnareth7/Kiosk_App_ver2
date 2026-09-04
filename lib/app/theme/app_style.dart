@@ -9,7 +9,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w700,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 1 600
@@ -18,7 +19,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w600,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 1 500
@@ -27,7 +29,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w500,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 1 400
@@ -36,7 +39,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w400,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 2 700
@@ -45,7 +49,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w700,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 2 600
@@ -54,7 +59,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w600,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 2 500
@@ -63,7 +69,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w500,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 2 400
@@ -72,7 +79,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w400,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 3 700
@@ -81,7 +89,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w700,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 3 600
@@ -90,7 +99,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w600,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 3 500
@@ -99,7 +109,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w500,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 3 400
@@ -108,7 +119,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w400,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 4 700
@@ -117,7 +129,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w700,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 4 600
@@ -126,7 +139,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w600,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 4 500
@@ -135,7 +149,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w500,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 4 400
@@ -144,7 +159,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w400,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 5 700
@@ -153,7 +169,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w700,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 5 600
@@ -162,7 +179,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w600,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 5 500
@@ -171,7 +189,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w500,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Headline 5 400
@@ -180,7 +199,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w400,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 1 700
@@ -189,7 +209,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w700,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 1 600
@@ -198,7 +219,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w600,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 1 500
@@ -207,7 +229,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w500,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 1 400
@@ -216,7 +239,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w400,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 2 700
@@ -225,7 +249,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w700,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 2 600
@@ -234,7 +259,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w600,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 2 500
@@ -243,7 +269,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w500,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 2 400
@@ -252,7 +279,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w400,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 3 700
@@ -261,7 +289,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w700,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 3 600
@@ -270,7 +299,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w600,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 3 500
@@ -278,8 +308,9 @@ class AppTextStyle {
         fontSize: 12.sp,
         fontWeight: FontWeight.w500,
         color: AppColor.neutral800,
-        height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        height: 16 / 12,
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 3 400
@@ -288,7 +319,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w400,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 4 700
@@ -297,7 +329,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w700,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 4 600
@@ -306,7 +339,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w600,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 4 500
@@ -315,7 +349,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w500,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 4 400
@@ -324,7 +359,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w400,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 5 700
@@ -333,7 +369,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w700,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 5 600
@@ -342,7 +379,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w600,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 5 500
@@ -351,7 +389,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w500,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Body 5 400
@@ -360,7 +399,8 @@ class AppTextStyle {
         fontWeight: FontWeight.w400,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 
   // Button
@@ -369,6 +409,7 @@ class AppTextStyle {
         fontWeight: FontWeight.w700,
         color: AppColor.neutral800,
         height: 0,
-        fontFamilyFallback: const ['SFProText', 'KantumruyPro'],
+        fontFamily: 'SFProText',
+        fontFamilyFallback: const ['KantumruyPro'],
       );
 }

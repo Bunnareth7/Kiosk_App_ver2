@@ -15,10 +15,16 @@ class OrderDetailController extends GetxController {
 
   static const List<double> cupSizeExtraPrices = [0, 0.9, 1.8];
 
-  // Option labels
   static const List<String> cupSizes = ['S', 'M', 'L'];
 
-  static const List<String> sugarLevels = ['0%', '25%', '50%', '75%', '100%'];
+  static const List<String> sugarLevels = [
+    '0%',
+    '25%',
+    '50%',
+    '75%',
+    '100%',
+    '120%',
+  ];
 
   static const List<String> iceLevels = [
     'No Ice',
@@ -38,15 +44,21 @@ class OrderDetailController extends GetxController {
   }
 
   void selectCupSize(int index) {
-    selectedCupSizeIndex.value = index;
+    if (index >= 0 && index < cupSizes.length) {
+      selectedCupSizeIndex.value = index;
+    }
   }
 
   void selectSugar(int index) {
-    selectedSugarIndex.value = index;
+    if (index >= 0 && index < sugarLevels.length) {
+      selectedSugarIndex.value = index;
+    }
   }
 
   void selectIce(int index) {
-    selectedIceIndex.value = index;
+    if (index >= 0 && index < iceLevels.length) {
+      selectedIceIndex.value = index;
+    }
   }
 
   void toggleTopping(int index) {
@@ -67,17 +79,38 @@ class OrderDetailController extends GetxController {
     }
   }
 
-  double get unitPrice =>
-      product.price + cupSizeExtraPrices[selectedCupSizeIndex.value];
+  double get unitPrice {
+    final index = selectedCupSizeIndex.value;
+
+    if (index < 0 || index >= cupSizeExtraPrices.length) {
+      return product.price;
+    }
+
+    return product.price + cupSizeExtraPrices[index];
+  }
 
   double get subtotal => unitPrice * quantity.value;
 
   Future<void> addToCart() async {
-    final cupSize = cupSizes[selectedCupSizeIndex.value];
+    final cupIndex = selectedCupSizeIndex.value;
+    final sugarIndex = selectedSugarIndex.value;
+    final iceIndex = selectedIceIndex.value;
 
-    final sugarLevel = sugarLevels[selectedSugarIndex.value];
+    if (cupIndex < 0 || cupIndex >= cupSizes.length) {
+      return;
+    }
 
-    final iceLevel = iceLevels[selectedIceIndex.value];
+    if (sugarIndex < 0 || sugarIndex >= sugarLevels.length) {
+      return;
+    }
+
+    if (iceIndex < 0 || iceIndex >= iceLevels.length) {
+      return;
+    }
+
+    final cupSize = cupSizes[cupIndex];
+    final sugarLevel = sugarLevels[sugarIndex];
+    final iceLevel = iceLevels[iceIndex];
 
     final toppings = selectedToppingIndexes
         .map((index) => index.toString())

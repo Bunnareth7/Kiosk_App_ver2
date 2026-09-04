@@ -2,30 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:kiosk_app/app/constants/app_decoration.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
 import 'package:kiosk_app/app/modules/apply_coupon/widgets/add_coupon_dialog.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
 import 'package:kiosk_app/app/widgets/app_inkwell.dart';
 
-class CostumHomeAppbar extends StatelessWidget implements PreferredSizeWidget {
+class CostumHomeAppbar extends StatelessWidget {
   const CostumHomeAppbar({super.key});
 
   @override
-  Size get preferredSize => Size.fromHeight(56.h);
-
-  @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: AppColor.neutral100,
-      surfaceTintColor: Colors.transparent,
-      scrolledUnderElevation: 0,
-      elevation: 0,
-      automaticallyImplyLeading: false,
-      titleSpacing: 0,
-      title: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppDecoration.paddingM12),
+    return SafeArea(
+      bottom: false,
+      child: Container(
+        color: AppColor.neutral100,
+        padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 5.h),
         child: Row(
           children: [
             AnimInkWell(
@@ -55,7 +47,9 @@ class CostumHomeAppbar extends StatelessWidget implements PreferredSizeWidget {
                 ],
               ),
             ),
+
             20.horizontalSpace,
+
             AnimInkWell(
               onTap: AddCouponDialog.show,
               child: Row(

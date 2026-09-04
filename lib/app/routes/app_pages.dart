@@ -2,8 +2,6 @@ import 'package:get/get.dart';
 
 import '../modules/apply_coupon/bindings/apply_coupon_binding.dart';
 import '../modules/apply_coupon/views/apply_coupon_view.dart';
-import '../modules/cart/bindings/cart_binding.dart';
-import '../modules/cart/views/cart_view.dart';
 import '../modules/cart_success/bindings/cart_success_binding.dart';
 import '../modules/cart_success/views/cart_success_view.dart';
 import '../modules/checkout/bindings/checkout_binding.dart';
@@ -92,11 +90,7 @@ class AppPages {
       page: () => const SpacialDealScreenView(),
       binding: SpacialDealScreenBinding(),
     ),
-    GetPage(
-      name: _Paths.CART,
-      page: () => const CartView(),
-      binding: CartBinding(),
-    ),
+
     GetPage(
       name: _Paths.CHECKOUT,
       page: () => const CheckoutView(),
