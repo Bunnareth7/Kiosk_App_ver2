@@ -1,7 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:kiosk_app/app/constants/app_path.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
+import 'package:kiosk_app/app/widgets/app_inkwell.dart';
 
 class CheckoutHeader extends StatefulWidget {
   const CheckoutHeader({super.key});
@@ -43,12 +47,13 @@ class _CheckoutHeaderState extends State<CheckoutHeader> {
       builder: (context) {
         return Stack(
           children: [
-            // Tap outside to dismiss
             Positioned.fill(
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: _removeOverlay,
-                child: Container(color: Colors.black.withValues(alpha: 0.25)),
+                child: Container(
+                  color: Colors.black.withValues(alpha: 0.25),
+                ),
               ),
             ),
             CompositedTransformFollower(
@@ -84,11 +89,12 @@ class _CheckoutHeaderState extends State<CheckoutHeader> {
                             ),
                           _OptionTile(
                             label: _options[i],
-                            selected: _options[i].toUpperCase() == _orderType,
+                            selected:
+                                _options[i].toUpperCase() == _orderType,
                             onTap: () {
-                              setState(
-                                () => _orderType = _options[i].toUpperCase(),
-                              );
+                              setState(() {
+                                _orderType = _options[i].toUpperCase();
+                              });
                               _removeOverlay();
                             },
                           ),
@@ -103,7 +109,6 @@ class _CheckoutHeaderState extends State<CheckoutHeader> {
         );
       },
     );
-
     overlay.insert(_overlayEntry!);
   }
 
@@ -112,14 +117,46 @@ class _CheckoutHeaderState extends State<CheckoutHeader> {
     return Container(
       width: double.infinity,
       color: AppColor.neutral100,
-      padding: EdgeInsets.only(right: 16.w, top: 10.h, left: 16.w),
+      padding: EdgeInsets.only(
+        right: 16.w,
+        top: 10.h,
+        left: 16.w,
+      ),
       child: Column(
         children: [
-          Text(
-            'CHECKOUT',
-            style: AppTextStyle.body2_600.copyWith(color: AppColor.neutral800),
+          SizedBox(
+            height: 22.h,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: AnimInkWell(
+                    onTap: () { 
+                      // change to something else in the future
+                      Navigator.of(context).pop();
+                    },
+                    child: SvgPicture.asset(
+                      AppPath.downCicleArrow,
+                      width: 24.w,
+                      height: 24.w,
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Text(
+                    'CHECKOUT',
+                    style: AppTextStyle.body2_600.copyWith(
+                      color: AppColor.neutral800,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
+
           2.verticalSpace,
+
           CompositedTransformTarget(
             link: _layerLink,
             child: GestureDetector(
@@ -134,10 +171,10 @@ class _CheckoutHeaderState extends State<CheckoutHeader> {
                     ),
                   ),
                   4.horizontalSpace,
-                  Icon(
-                    Icons.arrow_drop_down,
-                    size: 16.sp,
-                    color: AppColor.neutral500,
+                  SvgPicture.asset(
+                    AppPath.arrowDown,
+                    width: 12.w,
+                    height: 12.w,
                   ),
                 ],
               ),
@@ -170,10 +207,15 @@ class _OptionTile extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+        padding: EdgeInsets.symmetric(
+          horizontal: 16.w,
+          vertical: 12.h,
+        ),
         child: Text(
           label,
-          style: AppTextStyle.body2_500.copyWith(color: AppColor.neutral800),
+          style: AppTextStyle.body2_500.copyWith(
+            color: AppColor.neutral800,
+          ),
         ),
       ),
     );
@@ -191,13 +233,19 @@ class _ProgressSteps extends StatelessWidget {
             top: 1.h,
             left: 30.w,
             right: 5.w,
-            child: Container(height: 3.h, color: AppColor.neutral200),
+            child: Container(
+              height: 3.h,
+              color: AppColor.neutral200,
+            ),
           ),
           Positioned(
             top: 1.h,
             left: 5.w,
             width: 150.w,
-            child: Container(height: 3.h, color: AppColor.mainprimarykoi),
+            child: Container(
+              height: 3.h,
+              color: AppColor.mainprimarykoi,
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -239,15 +287,20 @@ class _ProgressSteps extends StatelessWidget {
           height: 7.w,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: isActive ? AppColor.mainprimarykoi : AppColor.neutral200,
+            color: isActive
+                ? AppColor.mainprimarykoi
+                : AppColor.neutral200,
           ),
         ),
         5.verticalSpace,
         Text(
           title,
-          style: AppTextStyle.body3_500.copyWith(color: AppColor.neutral800),
+          style: AppTextStyle.body3_500.copyWith(
+            color: AppColor.neutral800,
+          ),
         ),
       ],
     );
   }
 }
+

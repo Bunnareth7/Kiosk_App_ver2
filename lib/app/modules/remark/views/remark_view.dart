@@ -147,7 +147,7 @@ class _RemarkChip extends StatelessWidget {
     return AnimInkWell(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 11.h),
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         decoration: BoxDecoration(
           color: selected || isOther && selected
               ? AppColor.primarykoi200

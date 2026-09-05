@@ -76,6 +76,8 @@ class AppPath {
   static const String paymentsuccess = 'assets/video/paymentsuccess.mp4';
   static const String qrCode = 'assets/images/QR.svg';
   static const String koiWalletqr = 'assets/images/koi_wallet_qr.svg';
+  static const String downCicleArrow = 'assets/icons/arrow_cicle_down.svg';
+  static const String arrowDown = 'assets/icons/arrow_down.svg';
 
   
 }
