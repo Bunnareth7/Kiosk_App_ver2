@@ -20,6 +20,7 @@ abstract class Routes {
   static const PAYMENT_SUCCESS = _Paths.PAYMENT_SUCCESS;
   static const REMARK = _Paths.REMARK;
   static const APPLY_COUPON = _Paths.APPLY_COUPON;
+  static const SEARCH = _Paths.SEARCH;
 }
 
 abstract class _Paths {
@@ -41,4 +42,5 @@ abstract class _Paths {
   static const PAYMENT_SUCCESS = '/payment-success';
   static const REMARK = '/remark';
   static const APPLY_COUPON = '/apply-coupon';
+  static const SEARCH = '/search';
 }

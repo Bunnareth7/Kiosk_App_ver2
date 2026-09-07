@@ -19,6 +19,14 @@ class AppPath {
   static const String wallet = 'assets/icons/wallet.svg';
   static const String wepay = 'assets/icons/wepay.png';
 
+  //category icons
+  static const String merchandise = 'assets/images/merchandise.svg';
+  static const String flavoredTea = 'assets/images/FLAVORED TEA.svg';
+  static const String chewe = 'assets/images/chewe.svg';
+  static const String teaSet = 'assets/images/tea_set.svg';
+  static const String promotion = 'assets/images/promotion.svg';
+  
+
   // Images
   static const String iconKioImage = 'assets/images/IconKio.svg';
   static const String monakomLogo = 'assets/images/MONOKOM_LOGO1.png';
@@ -78,6 +86,8 @@ class AppPath {
   static const String koiWalletqr = 'assets/images/koi_wallet_qr.svg';
   static const String downCicleArrow = 'assets/icons/arrow_cicle_down.svg';
   static const String arrowDown = 'assets/icons/arrow_down.svg';
+  static const String searchIcon = 'assets/icons/Search.svg';
+  static const String frape = 'assets/images/frape.png';
 
   
 }

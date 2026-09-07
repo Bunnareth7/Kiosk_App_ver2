@@ -51,7 +51,7 @@ final List<ProductModel> sampleProducts = [
     name: 'Yakult Green',
     price: 2.00,
 
-    imagePath: 'assets/images/bubblemilktea.png',
+    imagePath:  'assets/images/frape.png',
   ),
   const ProductModel(
     id: '3',
@@ -64,7 +64,7 @@ final List<ProductModel> sampleProducts = [
     name: 'Yakult Green Tea',
     price: 1.00,
     originalPrice: 2.00,
-    imagePath: 'assets/images/bubblemilktea.png',
+    imagePath: 'assets/images/frape.png',
   ),
   const ProductModel(
     id: '5',
@@ -78,14 +78,14 @@ final List<ProductModel> sampleProducts = [
     name: 'Yakult Green Bubble Milk Tea',
     price: 1.00,
     originalPrice: 2.00,
-    imagePath: 'assets/images/greentea.png',
+    imagePath: 'assets/images/frape.png',
   ),
   const ProductModel(
     id: '7',
     name: 'Yakult Green Bubble Milk Tea',
     price: 1.00,
     originalPrice: 2.00,
-    imagePath: 'assets/images/greentea.png',
+    imagePath: 'assets/images/bubblemilktea.png',
   ),
   const ProductModel(
     id: '8',
@@ -99,7 +99,7 @@ final List<ProductModel> sampleProducts = [
     name: 'Yakult Green Bubble Milk Tea',
     price: 2.00,
     //originalPrice: 2.00,
-    imagePath: 'assets/images/greentea.png',
+    imagePath: 'assets/images/frape.png',
   ),
   const ProductModel(
     id: '10',
@@ -113,13 +113,13 @@ final List<ProductModel> sampleProducts = [
     name: 'Yakult Green Bubble Milk Tea',
     price: 1.00,
     originalPrice: 2.00,
-    imagePath: 'assets/images/greentea.png',
+    imagePath: 'assets/images/frape.png',
   ),
   const ProductModel(
     id: '12',
     name: 'Yakult Green Bubble Milk Tea',
     price: 1.00,
     originalPrice: 2.00,
-    imagePath: 'assets/images/greentea.png',
+    imagePath: 'assets/images/bubblemilktea.png',
   ),
 ];

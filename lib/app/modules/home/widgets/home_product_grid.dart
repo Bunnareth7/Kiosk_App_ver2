@@ -37,7 +37,7 @@ class HomeProductGrid extends StatelessWidget {
               padding: EdgeInsets.only(
                 left: AppDecoration.paddingM10,
                 top: AppDecoration.paddingM10,
-                bottom: AppDecoration.paddingM10,
+                //bottom: AppDecoration.paddingM10,
               ),
               child: Row(
                 children: [
@@ -55,8 +55,8 @@ class HomeProductGrid extends StatelessWidget {
                 itemCount: sampleProducts.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  mainAxisSpacing: AppDecoration.paddingM12,
-                  crossAxisSpacing: AppDecoration.paddingM12,
+                  mainAxisSpacing: AppDecoration.paddingM10,
+                  crossAxisSpacing: AppDecoration.paddingM10,
                   childAspectRatio: 0.55,
                 ),
                 itemBuilder: (context, index) =>

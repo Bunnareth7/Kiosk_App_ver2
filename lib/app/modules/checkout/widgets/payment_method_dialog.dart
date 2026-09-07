@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,7 +11,10 @@ class PaymentInformationDialog extends StatelessWidget {
 
   static void show() {
     Get.dialog(
-      const PaymentInformationDialog(),
+      BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+        child: const PaymentInformationDialog(),
+      ),
       barrierDismissible: false,
       barrierColor: Colors.black54,
     );
@@ -19,36 +24,29 @@ class PaymentInformationDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: AppColor.neutral100,
-      insetPadding: EdgeInsets.symmetric(horizontal: 68.w),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.r),
-      ),
+      insetPadding: EdgeInsets.symmetric(horizontal: 24.w),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
       child: SizedBox(
         width: 235.w,
-        
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 16.w,
-            vertical: 16.h,
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'Information',
-                style: AppTextStyle.body3_700,
-              ),
-              20.verticalSpace,
+              Text('Information', style: AppTextStyle.body3_700),
+              16.verticalSpace,
               Text(
                 'Oops! This feature is coming soon.\n'
                 'Please try another method. \n Thanks!',
                 textAlign: TextAlign.center,
-                style: AppTextStyle.body3_400,
+                style: AppTextStyle.body3_400.copyWith(
+                  color: AppColor.neutral800,
+                ),
               ),
-              20.verticalSpace,
+              16.verticalSpace,
               SizedBox(
-                width: double.infinity,
-                height: 36.h,
+                height: 32.h,
+                width: 203.w,
                 child: GestureDetector(
                   onTap: () => Get.back(),
                   child: Container(

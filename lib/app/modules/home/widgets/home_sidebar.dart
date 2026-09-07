@@ -19,18 +19,31 @@ class HomeSidebar extends StatelessWidget {
   final HomeController controller;
   final List<HomeCategory> categories;
 
+  static const _animDuration = Duration(milliseconds: 150);
+  static const double _iconBaseSize = 18;
+  static const double _selectedScale = 1.15;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 80.w,
-      child: ListView.builder(
+      width: 83.w,
+      child: ListView.separated(
         itemCount: categories.length,
+        separatorBuilder: (context, index) => 20.verticalSpace,
         itemBuilder: (context, index) {
           return Obx(() {
             final isSelected = controller.selectedCategory.value == index;
+
+            final baseStyle = AppTextStyle.body4_500;
+            final textStyle = baseStyle.copyWith(
+              color: isSelected ? AppColor.mainprimarykoi : Colors.grey,
+              fontWeight: isSelected ? FontWeight.bold : FontWeight.bold,
+            );
+
             return AnimInkWell(
               onTap: () => controller.selectedCategory.value = index,
-              child: Container(
+              child: AnimatedContainer(
+                duration: _animDuration,
                 decoration: BoxDecoration(
                   border: Border(
                     left: BorderSide(
@@ -42,24 +55,24 @@ class HomeSidebar extends StatelessWidget {
                   ),
                 ),
                 padding: EdgeInsets.symmetric(
-                  vertical: AppDecoration.paddingM12,
                   horizontal: AppDecoration.paddingS8,
                 ),
                 child: Column(
                   children: [
-                    _CategoryIcon(assetPath: categories[index].iconAsset),
-                    4.verticalSpace,
-                    Text(
-                      categories[index].label,
-                      textAlign: TextAlign.center,
-                      style: AppTextStyle.body3_600.copyWith(
-                        color: isSelected
-                            ? AppColor.mainprimarykoi
-                            : Colors.grey,
-                        fontWeight: isSelected
-                            ? FontWeight.bold
-                            : FontWeight.normal,
+                    AnimatedScale(
+                      scale: isSelected ? _selectedScale : 1.0,
+                      duration: _animDuration,
+                      child: _CategoryIcon(
+                        assetPath: categories[index].iconAsset,
+                        size: _iconBaseSize.w,
                       ),
+                    ),
+                    10.verticalSpace,
+                    AnimatedDefaultTextStyle(
+                      duration: _animDuration,
+                      style: textStyle,
+                      textAlign: TextAlign.center,
+                      child: Text(categories[index].label),
                     ),
                   ],
                 ),
@@ -74,9 +87,10 @@ class HomeSidebar extends StatelessWidget {
 
 /// Handles both .svg and .png category icons.
 class _CategoryIcon extends StatelessWidget {
-  const _CategoryIcon({required this.assetPath});
+  const _CategoryIcon({required this.assetPath, required this.size});
 
   final String assetPath;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
@@ -85,20 +99,20 @@ class _CategoryIcon extends StatelessWidget {
     if (isSvg) {
       return SvgPicture.asset(
         assetPath,
-        height: 18.w,
-        width: 18.w,
+        height: size,
+        width: size,
         placeholderBuilder: (context) =>
-            Container(height: 18.w, width: 18.w, color: Colors.grey[200]),
+            Container(height: size, width: size, color: Colors.grey[200]),
       );
     }
 
     return Image.asset(
       assetPath,
-      height: 18.w,
-      width: 18.w,
+      height: size,
+      width: size,
       fit: BoxFit.contain,
       errorBuilder: (context, error, stackTrace) =>
-          Container(height: 18.w, width: 18.w, color: Colors.grey[200]),
+          Container(height: size, width: size, color: Colors.grey[200]),
     );
   }
 }

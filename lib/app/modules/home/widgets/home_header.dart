@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
 import 'package:kiosk_app/app/modules/apply_coupon/widgets/add_coupon_dialog.dart';
+import 'package:kiosk_app/app/modules/search/views/search_view.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
 import 'package:kiosk_app/app/widgets/app_inkwell.dart';
@@ -17,7 +18,7 @@ class CostumHomeAppbar extends StatelessWidget {
       bottom: false,
       child: Container(
         color: AppColor.neutral100,
-        padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 5.h),
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
         child: Row(
           children: [
             AnimInkWell(
@@ -48,7 +49,7 @@ class CostumHomeAppbar extends StatelessWidget {
               ),
             ),
 
-            20.horizontalSpace,
+            16.horizontalSpace,
 
             AnimInkWell(
               onTap: AddCouponDialog.show,
@@ -61,6 +62,27 @@ class CostumHomeAppbar extends StatelessWidget {
                   ),
                   6.horizontalSpace,
                   Text('Coupon', style: AppTextStyle.body3_500),
+                ],
+              ),
+            ),
+            16.horizontalSpace,
+            AnimInkWell(
+              onTap: () {
+                SearchView.open();
+              },
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    AppPath.searchIcon,
+                    width: 18.w,
+                    height: 18.w,
+                    colorFilter: ColorFilter.mode(
+                      AppColor.neutral800,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                  6.horizontalSpace,
+                  Text('Search', style: AppTextStyle.body3_500),
                 ],
               ),
             ),

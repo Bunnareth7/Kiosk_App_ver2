@@ -20,6 +20,8 @@ import '../modules/payment_success/bindings/payment_success_binding.dart';
 import '../modules/payment_success/views/payment_success_view.dart';
 import '../modules/remark/bindings/remark_binding.dart';
 import '../modules/remark/views/remark_view.dart';
+import '../modules/search/bindings/search_binding.dart';
+import '../modules/search/views/search_view.dart';
 import '../modules/select_terminal/bindings/select_terminal_binding.dart';
 import '../modules/select_terminal/views/select_terminal_view.dart';
 import '../modules/spacial_deal_screen/bindings/spacial_deal_screen_binding.dart';
@@ -90,7 +92,6 @@ class AppPages {
       page: () => const SpacialDealScreenView(),
       binding: SpacialDealScreenBinding(),
     ),
-
     GetPage(
       name: _Paths.CHECKOUT,
       page: () => const CheckoutView(),
@@ -110,6 +111,11 @@ class AppPages {
       name: _Paths.APPLY_COUPON,
       page: () => const ApplyCouponView(),
       binding: ApplyCouponBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH,
+      page: () => const SearchView(),
+      binding: SearchBinding(),
     ),
   ];
 }

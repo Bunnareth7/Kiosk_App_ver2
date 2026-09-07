@@ -44,10 +44,10 @@ class _KoiWalletDialogState extends State<KoiWalletDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: AppColor.neutral100,
-      insetPadding: EdgeInsets.symmetric(horizontal: 68.w),
+      insetPadding: EdgeInsets.symmetric(horizontal: 24.w),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
       child: SizedBox(
-        width: 270.w,
+        width: 235.w,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
           child: Column(
@@ -55,11 +55,11 @@ class _KoiWalletDialogState extends State<KoiWalletDialog> {
             children: [
               Text('KOI Wallet', style: AppTextStyle.body2_700),
 
-              18.verticalSpace,
+              20.verticalSpace,
 
               SizedBox(
-                width: 130.w,
-                height: 130.w,
+                width: 125.w,
+                height: 125.w,
                 child: SvgPicture.asset(AppPath.koiWalletqr),
               ),
 

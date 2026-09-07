@@ -18,15 +18,15 @@ class HomeView extends GetView<HomeController> {
   static void open() => Get.toNamed(Routes.HOME);
 
   static const List<HomeCategory> _categories = [
-    HomeCategory('Best Sellers', AppPath.iconKio6),
-    HomeCategory('Promotion', AppPath.iconKio5),
-    HomeCategory('Member Benefits', AppPath.iconKio5),
-    HomeCategory('Tea Set', AppPath.iconKio5),
-    HomeCategory('Chewy Tea', AppPath.iconKio5),
-    HomeCategory('Milk Tea', AppPath.iconKio5),
-    HomeCategory('Signature Tea & Juice', AppPath.iconKio5),
-    HomeCategory('Flavored Tea & Juice', AppPath.iconKio5),
-    HomeCategory('Merchandise', AppPath.iconKio5),
+    HomeCategory('BEST SELLER', AppPath.iconKio6),
+    HomeCategory('PROMOTION', AppPath.promotion),
+    HomeCategory('MEMBERS BENEFIT', AppPath.iconKio5),
+    HomeCategory('TEA SET', AppPath.teaSet),
+    HomeCategory('CHEVY TEA', AppPath.chewe),
+    HomeCategory('MILK TEA', AppPath.iconKio5),
+    HomeCategory('SIGNATURE TEA & JUICE', AppPath.iconKio5),
+    HomeCategory('FLAVORED TEA & JUICE', AppPath.flavoredTea),
+    HomeCategory('MERCHANDISE', AppPath.merchandise),
   ];
 
   @override

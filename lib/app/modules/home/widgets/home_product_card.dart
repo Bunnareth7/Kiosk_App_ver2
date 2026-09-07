@@ -18,22 +18,17 @@ class HomeProductCard extends StatelessWidget {
       onTap: () => OrderDetailView.open(product),
       child: Container(
         padding: EdgeInsets.fromLTRB(
-          AppDecoration.paddingM10,
-          AppDecoration.paddingM10,
-          AppDecoration.paddingM10,
+          AppDecoration.paddingS8,
+          AppDecoration.paddingS8,
+          AppDecoration.paddingS8,
           0,
         ),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(color: Colors.grey.shade200, width: 0.5),
-          ),
-        ),
+
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              width: 62.33.w,
-              height: 62.33.w,
+              height: 70.33.w,
               child: Image.asset(
                 product.imagePath,
                 fit: BoxFit.contain,
@@ -54,13 +49,13 @@ class HomeProductCard extends StatelessWidget {
             ),
 
             Wrap(
-              // mainAxisAlignment: MainAxisAlignment.center,
+              
               alignment: WrapAlignment.center,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 Text(
                   '\$${product.price.toStringAsFixed(2)}',
-                  style: AppTextStyle.body5_500.copyWith(
+                  style: AppTextStyle.body4_500.copyWith(
                     color: AppColor.error500,
                   ),
                 ),
