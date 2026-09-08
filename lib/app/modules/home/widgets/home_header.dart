@@ -5,6 +5,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
 import 'package:kiosk_app/app/modules/apply_coupon/widgets/add_coupon_dialog.dart';
 import 'package:kiosk_app/app/modules/search/views/search_view.dart';
+import 'package:kiosk_app/app/modules/setting/views/setting_view.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
 import 'package:kiosk_app/app/widgets/app_inkwell.dart';
@@ -35,7 +36,9 @@ class CostumHomeAppbar extends StatelessWidget {
             const Spacer(),
 
             AnimInkWell(
-              onTap: () {},
+              onTap: () {
+                SettingView.open();
+              },
               child: Row(
                 children: [
                   SvgPicture.asset(

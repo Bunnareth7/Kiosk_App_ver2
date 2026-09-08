@@ -21,6 +21,7 @@ abstract class Routes {
   static const REMARK = _Paths.REMARK;
   static const APPLY_COUPON = _Paths.APPLY_COUPON;
   static const SEARCH = _Paths.SEARCH;
+  static const SETTING = _Paths.SETTING;
 }
 
 abstract class _Paths {
@@ -43,4 +44,5 @@ abstract class _Paths {
   static const REMARK = '/remark';
   static const APPLY_COUPON = '/apply-coupon';
   static const SEARCH = '/search';
+  static const SETTING = '/setting';
 }

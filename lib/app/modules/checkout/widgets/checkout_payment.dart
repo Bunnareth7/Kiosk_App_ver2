@@ -156,9 +156,7 @@ class _PaymentMethod extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyle.body4_500.copyWith(
-                  color: isSelected
-                      ? AppColor.mainprimarykoi
-                      : AppColor.neutral500,
+                  color: AppColor.neutral500,
                 ),
               ),
             ),

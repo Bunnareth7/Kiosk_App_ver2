@@ -6,7 +6,6 @@ import 'package:kiosk_app/app/modules/checkout/widgets/koi_wallet_dialog.dart';
 import 'package:kiosk_app/app/modules/checkout/widgets/payment_method_dialog.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
-
 import '../controllers/checkout_controller.dart';
 import '../widgets/checkout_header.dart';
 import '../widgets/checkout_summary.dart';

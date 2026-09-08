@@ -24,6 +24,8 @@ import '../modules/search/bindings/search_binding.dart';
 import '../modules/search/views/search_view.dart';
 import '../modules/select_terminal/bindings/select_terminal_binding.dart';
 import '../modules/select_terminal/views/select_terminal_view.dart';
+import '../modules/setting/bindings/setting_binding.dart';
+import '../modules/setting/views/setting_view.dart';
 import '../modules/spacial_deal_screen/bindings/spacial_deal_screen_binding.dart';
 import '../modules/spacial_deal_screen/views/spacial_deal_screen_view.dart';
 import '../modules/splash_page/bindings/splash_page_binding.dart';
@@ -116,6 +118,11 @@ class AppPages {
       name: _Paths.SEARCH,
       page: () => const SearchView(),
       binding: SearchBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETTING,
+      page: () => const SettingView(),
+      binding: SettingBinding(),
     ),
   ];
 }

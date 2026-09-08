@@ -41,7 +41,7 @@ class OrderDetailView extends GetView<OrderDetailController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           OrderProductInfo(name: product.name),
-                          12.verticalSpace,
+                          8.verticalSpace,
                           Obx(
                             () => CupSizeSection(
                               basePrice: product.price,
@@ -52,7 +52,7 @@ class OrderDetailView extends GetView<OrderDetailController> {
                               onSelect: controller.selectCupSize,
                             ),
                           ),
-                          12.verticalSpace,
+                          8.verticalSpace,
                           Obx(
                             () => SugarLevelSection(
                               selectedIndex:
@@ -60,14 +60,14 @@ class OrderDetailView extends GetView<OrderDetailController> {
                               onSelect: controller.selectSugar,
                             ),
                           ),
-                          12.verticalSpace,
+                          8.verticalSpace,
                           Obx(
                             () => IceLevelSection(
                               selectedIndex: controller.selectedIceIndex.value,
                               onSelect: controller.selectIce,
                             ),
                           ),
-                          12.verticalSpace,
+                          8.verticalSpace,
                           Obx(
                             () => ToppingSection(
                               selectedIndexes:

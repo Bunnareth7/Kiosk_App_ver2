@@ -42,17 +42,10 @@ class OrderBottomBar extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Subtotal',
-                  style: AppTextStyle.body2_500.copyWith(
-                    color: AppColor.neutral800,
-                  ),
-                ),
+                Text('Subtotal', style: AppTextStyle.body2_500),
                 Text(
                   '\$${subtotal.toStringAsFixed(2)}',
-                  style: AppTextStyle.body2_500.copyWith(
-                    color: AppColor.neutral800,
-                  ),
+                  style: AppTextStyle.body2_500,
                 ),
               ],
             ),

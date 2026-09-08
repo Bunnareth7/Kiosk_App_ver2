@@ -33,14 +33,22 @@ class LoginView extends StatelessWidget {
                         AppPath.arrow1,
                         width: 24.w,
                         height: 24.w,
+                        colorFilter: const ColorFilter.mode(
+                          AppColor.mainprimarykoi,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
                     const Spacer(),
-                    Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w400,
+                    AnimInkWell(
+                      onTap: () {
+                        OrderingView.open();
+                      },
+                      child: Text(
+                        'Log In',
+                        style: AppTextStyle.body3_500.copyWith(
+                          color: AppColor.mainprimarykoi,
+                        ),
                       ),
                     ),
                     20.verticalSpace, // Space for alignment
@@ -134,10 +142,10 @@ class LoginView extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: null,
-                        icon: Icon(
-                          Icons.visibility_off,
-                          color: Colors.grey,
-                          size: 20.w,
+                        icon: SvgPicture.asset(
+                          AppPath.closeEye,
+                          width: 20.w,
+                          height: 20.w,
                         ),
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
@@ -147,31 +155,31 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
 
-                30.verticalSpace,
+                // 30.verticalSpace,
 
-                AnimInkWell(
-                  onTap: () {
-                    OrderingView.open();
-                  },
-                  child: Container(
-                    width: 343.w,
-                    height: 42.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.r),
-                      color: AppColor.mainprimarykoi,
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.sp,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // AnimInkWell(
+                //   onTap: () {
+                //     OrderingView.open();
+                //   },
+                //   child: Container(
+                //     width: 343.w,
+                //     height: 42.h,
+                //     decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(8.r),
+                //       color: AppColor.mainprimarykoi,
+                //     ),
+                //     child: Center(
+                //       child: Text(
+                //         'Login',
+                //         style: TextStyle(
+                //           color: Colors.white,
+                //           fontWeight: FontWeight.bold,
+                //           fontSize: 16.sp,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

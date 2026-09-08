@@ -13,7 +13,6 @@ class HomeController extends GetxController {
   final RxDouble cartTotalPrice = 0.0.obs;
 
   late final CartDao cartDao;
-
   StreamSubscription<CartSummary>? _cartSubscription;
 
   @override

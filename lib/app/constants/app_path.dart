@@ -25,7 +25,6 @@ class AppPath {
   static const String chewe = 'assets/images/chewe.svg';
   static const String teaSet = 'assets/images/tea_set.svg';
   static const String promotion = 'assets/images/promotion.svg';
-  
 
   // Images
   static const String iconKioImage = 'assets/images/IconKio.svg';
@@ -62,7 +61,7 @@ class AppPath {
   static const String sugar20 = 'assets/images/sugar20.svg';
   static const String sugar50 = 'assets/images/sugar50.svg';
   static const String sugar70 = 'assets/images/sugar70.svg';
-  //topping 
+  //topping
   static const String konjakball = 'assets/images/konjakball.png';
   static const String bubble = 'assets/images/bubble.png';
   static const String goldenbubble = 'assets/images/goldenbubble.png';
@@ -89,5 +88,16 @@ class AppPath {
   static const String searchIcon = 'assets/icons/Search.svg';
   static const String frape = 'assets/images/frape.png';
 
-  
+  static const String closeEye = 'assets/icons/Hide.svg';
+  static const String openEye = 'assets/icons/Show.svg';
+
+  //setting
+
+  static const String generalSetting = 'assets/icons/general-setting.svg';
+  static const String languageSetting = 'assets/icons/Language1.svg';
+  static const String listOfProduct = 'assets/icons/list.svg';
+  static const String timeOut = 'assets/icons/Isolation_Mode.svg';
+  static const String lamp = 'assets/icons/lamp.svg';
+  static const String logout = 'assets/icons/Logout.svg';
+  static const String paper = 'assets/icons/Paper.svg';
 }

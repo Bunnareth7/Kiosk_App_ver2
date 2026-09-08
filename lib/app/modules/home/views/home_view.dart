@@ -5,7 +5,6 @@ import 'package:kiosk_app/app/constants/app_path.dart';
 import 'package:kiosk_app/app/modules/home/widgets/home_header.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
-
 import '../controllers/home_controller.dart';
 import '../widgets/home_category.dart';
 import '../widgets/home_product_grid.dart';

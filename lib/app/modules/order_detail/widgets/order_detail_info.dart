@@ -27,6 +27,7 @@ class OrderProductInfo extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: AppTextStyle.body4_400.copyWith(color: AppColor.neutral500),
         ),
+        
       ],
     );
   }
