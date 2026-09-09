@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
+import 'package:kiosk_app/app/modules/defualt_lang_setting/views/defualt_lang_setting_view.dart';
+import 'package:kiosk_app/app/modules/general_setting/views/general_setting_view.dart';
+import 'package:kiosk_app/app/modules/list_of_product/views/list_of_product_view.dart';
+import 'package:kiosk_app/app/modules/login/controllers/login_controller.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
@@ -29,19 +34,25 @@ class SettingView extends StatelessWidget {
                       _SettingTile(
                         iconAsset: AppPath.generalSetting,
                         title: 'General Setting',
-                        onTap: () {},
+                        onTap: () {
+                          GeneralSettingView.open();
+                        },
                       ),
                       _SettingTile(
                         iconAsset: AppPath.listOfProduct,
                         title: 'List of Products View',
                         trailingText: 'x3',
-                        onTap: () {},
+                        onTap: () {
+                          ListOfProductsView.open();
+                        },
                       ),
                       _SettingTile(
                         iconAsset: AppPath.languageSetting,
                         title: 'Default Language',
                         trailingText: 'English',
-                        onTap: () {},
+                        onTap: () {
+                          DefaultLanguageView.open();
+                        },
                       ),
                     ],
                   ),
@@ -92,11 +103,22 @@ class SettingView extends StatelessWidget {
                     ],
                   ),
 
-                  24.verticalSpace,
+                  20.verticalSpace,
 
                   Center(
                     child: AnimInkWell(
-                      onTap: () {},
+                      onTap: () {
+                        final storage = GetStorage();
+                        storage.remove('access_token');
+                        storage.remove('refresh_token');
+
+                       
+                        if (Get.isRegistered<LoginController>()) {
+                          Get.delete<LoginController>();
+                        }
+
+                        Get.offAllNamed(Routes.LOGIN);
+                      },
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -112,7 +134,7 @@ class SettingView extends StatelessWidget {
                           6.horizontalSpace,
                           Text(
                             'Log Out',
-                            style: AppTextStyle.body3_600.copyWith(
+                            style: AppTextStyle.body3_500.copyWith(
                               color: AppColor.error500,
                             ),
                           ),
@@ -151,10 +173,7 @@ class _SettingHeader extends StatelessWidget {
               ),
             ),
           ),
-          Text(
-            'Setting',
-            style: AppTextStyle.body2_700.copyWith(color: AppColor.neutral800),
-          ),
+          Text('Setting', style: AppTextStyle.body2_600),
         ],
       ),
     );

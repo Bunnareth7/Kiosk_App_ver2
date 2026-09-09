@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
-import 'package:kiosk_app/app/modules/login/views/login_view.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
@@ -18,6 +18,13 @@ class LanguageView extends StatelessWidget {
     {"label": "ខ្មែរ", "code": "km"},
     {"label": "中文", "code": "zh"},
   ];
+
+  void _continueAfterLanguageSelection() {
+    final token = GetStorage().read<String>('access_token');
+    final hasActiveSession = token != null && token.isNotEmpty;
+
+    Get.offNamed(hasActiveSession ? Routes.START_ORDER : Routes.LOGIN);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +70,7 @@ class LanguageView extends StatelessWidget {
                             color: Colors.transparent,
                             child: AnimInkWell(
                               onTap: () {
-                                LoginView.open();
+                                _continueAfterLanguageSelection();
                               },
                               child: Container(
                                 height: 50.h,

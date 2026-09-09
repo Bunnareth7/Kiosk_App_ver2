@@ -75,7 +75,7 @@ class _CustomTipDialogState extends State<CustomTipDialog> {
   Widget _buildDialogCard() {
     return Dialog(
       backgroundColor: AppColor.neutral100,
-      insetPadding: EdgeInsets.symmetric(horizontal: 84.w),
+      insetPadding: EdgeInsets.symmetric(horizontal: 24.w),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
       child: SizedBox(
         width: 235.w,
@@ -96,7 +96,7 @@ class _CustomTipDialogState extends State<CustomTipDialog> {
                 ),
               ),
 
-              10.verticalSpace,
+              16.verticalSpace,
 
               Row(
                 children: [

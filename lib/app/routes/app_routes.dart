@@ -22,6 +22,9 @@ abstract class Routes {
   static const APPLY_COUPON = _Paths.APPLY_COUPON;
   static const SEARCH = _Paths.SEARCH;
   static const SETTING = _Paths.SETTING;
+  static const GENERAL_SETTING = _Paths.GENERAL_SETTING;
+  static const LIST_OF_PRODUCT = _Paths.LIST_OF_PRODUCT;
+  static const DEFUALT_LANG_SETTING = _Paths.DEFUALT_LANG_SETTING;
 }
 
 abstract class _Paths {
@@ -45,4 +48,7 @@ abstract class _Paths {
   static const APPLY_COUPON = '/apply-coupon';
   static const SEARCH = '/search';
   static const SETTING = '/setting';
+  static const GENERAL_SETTING = '/general-setting';
+  static const LIST_OF_PRODUCT = '/list-of-product';
+  static const DEFUALT_LANG_SETTING = '/defualt-lang-setting';
 }

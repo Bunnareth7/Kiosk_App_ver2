@@ -1,0 +1,126 @@
+
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+class ApiClient {
+  late Dio _dio;
+  final GetStorage _storage = GetStorage();
+
+
+  static const String baseUrlGateway = 'https://uat.monakom.com/gateway/';
+  static const String baseUrlApi = 'https://uat.monakom.com/216/erp_cloud/';
+  static const String tdServiceUrl = 'https://uat.monakom.com/gateway/';
+  static const String apiKey = '6NpyIrfdrhGGWFcoSKzydv4HprQ4qPmHq7ylz5XQ6mI';
+
+  ApiClient() {
+    _dio = Dio(
+      BaseOptions(
+        baseUrl: baseUrlGateway,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'x-api-key': apiKey,
+        },
+        validateStatus: (status) => status != null,
+      ),
+    );
+
+    _dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          final token = _storage.read('access_token');
+          if (token != null && token.isNotEmpty) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          print('📤 Request: ${options.method} ${options.path}');
+          print('📤 Headers: ${options.headers}');
+          return handler.next(options);
+        },
+        onResponse: (response, handler) {
+          print('📥 Response: ${response.statusCode}');
+          return handler.next(response);
+        },
+        onError: (error, handler) {
+          print('❌ Error: ${error.message}');
+          if (error.response?.statusCode == 401) {
+            _storage.remove('access_token');
+            Get.offAllNamed('/login');
+            Get.snackbar(
+              'Session Expired',
+              'Please login again',
+              snackPosition: SnackPosition.TOP,
+              backgroundColor: Colors.red,
+              colorText: Colors.white,
+            );
+          }
+          return handler.next(error);
+        },
+      ),
+    );
+  }
+
+  // ===== POST REQUEST =====
+  Future<dynamic> post(String endpoint, dynamic data, {String? baseUrl}) async {
+    if (baseUrl == null) {
+      print('📤 POST: $baseUrlGateway$endpoint');
+      final response = await _dio.post(endpoint, data: data);
+      return response;
+    }
+
+    final token = _storage.read('access_token');
+    final headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'x-api-key': apiKey,
+    };
+    if (token != null && token.isNotEmpty) {
+      headers['Authorization'] = 'Bearer $token';
+    }
+
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: baseUrl,
+        headers: headers,
+        validateStatus: (status) => status != null,
+      ),
+    );
+
+    print('📤 POST: $baseUrl$endpoint');
+    final response = await dio.post(endpoint, data: data);
+    return response;
+  }
+
+  // ===== GET REQUEST =====
+  Future<dynamic> get(String endpoint, {String? baseUrl}) async {
+    final url = baseUrl ?? baseUrlApi;
+
+    final token = _storage.read('access_token');
+    print(
+      '📤 Token: ${token != null ? '${token.substring(0, 20)}...' : 'No token'}',
+    );
+
+    final headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'x-api-key': apiKey,
+    };
+
+    if (token != null && token.isNotEmpty) {
+      headers['Authorization'] = 'Bearer $token';
+    }
+
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: url,
+        headers: headers,
+        validateStatus: (status) => status != null,
+      ),
+    );
+
+    final response = await dio.get(endpoint);
+    return response;
+  }
+}

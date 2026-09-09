@@ -41,6 +41,8 @@ dependencies:
   drift: ^2.34.3
   drift_flutter: ^0.3.1
   video_player: ^2.14.0
+  dio: ^5.11.1
+  get_storage: ^2.1.1
 
 dev_dependencies:
   flutter_test:

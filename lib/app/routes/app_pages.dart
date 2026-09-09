@@ -6,10 +6,16 @@ import '../modules/cart_success/bindings/cart_success_binding.dart';
 import '../modules/cart_success/views/cart_success_view.dart';
 import '../modules/checkout/bindings/checkout_binding.dart';
 import '../modules/checkout/views/checkout_view.dart';
+import '../modules/defualt_lang_setting/bindings/defualt_lang_setting_binding.dart';
+import '../modules/defualt_lang_setting/views/defualt_lang_setting_view.dart';
+import '../modules/general_setting/bindings/general_setting_binding.dart';
+import '../modules/general_setting/views/general_setting_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/language_page/bindings/language_page_binding.dart';
 import '../modules/language_page/views/language_page_view.dart';
+import '../modules/list_of_product/bindings/list_of_product_binding.dart';
+import '../modules/list_of_product/views/list_of_product_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/order_detail/bindings/order_detail_binding.dart';
@@ -123,6 +129,21 @@ class AppPages {
       name: _Paths.SETTING,
       page: () => const SettingView(),
       binding: SettingBinding(),
+    ),
+    GetPage(
+      name: _Paths.GENERAL_SETTING,
+      page: () => const GeneralSettingView(),
+      binding: GeneralSettingBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIST_OF_PRODUCT,
+      page: () => const ListOfProductsView(),
+      binding: ListOfProductBinding(),
+    ),
+    GetPage(
+      name: _Paths.DEFUALT_LANG_SETTING,
+      page: () => const DefaultLanguageView(),
+      binding: DefualtLangSettingBinding(),
     ),
   ];
 }

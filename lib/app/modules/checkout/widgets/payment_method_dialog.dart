@@ -39,9 +39,7 @@ class PaymentInformationDialog extends StatelessWidget {
                 'Oops! This feature is coming soon.\n'
                 'Please try another method. \n Thanks!',
                 textAlign: TextAlign.center,
-                style: AppTextStyle.body3_400.copyWith(
-                  color: AppColor.neutral800,
-                ),
+                style: AppTextStyle.body3_400
               ),
               16.verticalSpace,
               SizedBox(

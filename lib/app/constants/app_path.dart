@@ -100,4 +100,5 @@ class AppPath {
   static const String lamp = 'assets/icons/lamp.svg';
   static const String logout = 'assets/icons/Logout.svg';
   static const String paper = 'assets/icons/Paper.svg';
+  static const String switchIcon = 'assets/icons/switch.svg';
 }
