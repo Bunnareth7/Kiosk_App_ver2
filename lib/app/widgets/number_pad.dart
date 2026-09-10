@@ -21,7 +21,7 @@ class NumberPad extends StatelessWidget {
       top: false,
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.fromLTRB(16.w, 10.h, 16.w, 10.h),
+        padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 6.h),
         decoration: BoxDecoration(
           color: AppColor.neutral100,
           borderRadius: BorderRadius.only(
@@ -33,11 +33,11 @@ class NumberPad extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             _keyRow(['1', '2', '3']),
-            6.verticalSpace,
+            4.verticalSpace,
             _keyRow(['4', '5', '6']),
-            6.verticalSpace,
+            4.verticalSpace,
             _keyRow(['7', '8', '9']),
-            6.verticalSpace,
+            4.verticalSpace,
             Row(
               children: [
                 Expanded(
@@ -45,7 +45,7 @@ class NumberPad extends StatelessWidget {
                     onTap: onBackspace,
                     child: Icon(
                       Icons.backspace_outlined,
-                      size: 16.sp,
+                      size: 14.w,
                       color: AppColor.neutral400,
                     ),
                   ),
@@ -57,11 +57,7 @@ class NumberPad extends StatelessWidget {
                   child: KeypadButton(
                     onTap: onConfirm,
                     backgroundColor: AppColor.neutral100,
-                    child: Icon(
-                      Icons.check,
-                      size: 18.sp,
-                      color: Colors.green,
-                    ),
+                    child: Icon(Icons.check, size: 16.w, color: Colors.green),
                   ),
                 ),
               ],
@@ -88,7 +84,7 @@ class NumberPad extends StatelessWidget {
       onTap: () => onDigit(digit),
       child: Text(
         digit,
-        style: AppTextStyle.body2_600.copyWith(color: AppColor.neutral700),
+        style: AppTextStyle.body2_500.copyWith(color: AppColor.neutral700),
       ),
     );
   }
@@ -111,7 +107,7 @@ class KeypadButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 34.h,
+        height: 26.h,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: backgroundColor ?? AppColor.neutral200,

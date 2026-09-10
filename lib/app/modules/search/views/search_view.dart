@@ -121,10 +121,10 @@ class SearchView extends GetView<SearchItemController> {
                   return ListView.separated(
                     padding: EdgeInsets.only(bottom: 20.h),
                     itemCount: controller.searchResults.length,
-                    separatorBuilder: (_, __) => SizedBox(height: 8.h),
+                    separatorBuilder: (_, _) => SizedBox(height: 8.h),
                     itemBuilder: (context, index) {
                       final product = controller.searchResults[index];
-
+ 
                       return _SearchProductItem(product: product);
                     },
                   );

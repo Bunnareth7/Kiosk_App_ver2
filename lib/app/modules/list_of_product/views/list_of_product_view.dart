@@ -16,7 +16,7 @@ class ListOfProductsView extends StatefulWidget {
 
 class _ListOfProductsViewState extends State<ListOfProductsView> {
 
-  int _selectedGridIndex = 0;
+  int _selectedGridIndex = 1;
 
   static const _options = ['Grid x2', 'Grid x3'];
 

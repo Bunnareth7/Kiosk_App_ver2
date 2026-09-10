@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart' show debugPaintBaselinesEnabled;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -9,6 +10,8 @@ import 'app/routes/app_pages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Prevent text-baseline diagnostic guides from appearing in the UI.
+  debugPaintBaselinesEnabled = false;
   await GetStorage.init();
 
   Get.put<AppDatabase>(AppDatabase(), permanent: true);

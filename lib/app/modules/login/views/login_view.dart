@@ -53,7 +53,7 @@ class LoginView extends GetView<LoginController> {
                         ),
                       ),
                     ),
-                    20.verticalSpace, // Space for alignment
+                    20.verticalSpace,
                   ],
                 ),
 

@@ -6,6 +6,7 @@ import 'package:kiosk_app/app/constants/app_path.dart';
 import 'package:kiosk_app/app/modules/ordering_page/widgets/button_section.dart';
 import 'package:kiosk_app/app/modules/ordering_page/widgets/image_slider.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
+import 'package:kiosk_app/app/theme/app_color.dart';
 
 class OrderingView extends StatefulWidget {
   const OrderingView({super.key});
@@ -25,7 +26,7 @@ class _OrderingViewState extends State<OrderingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.neutral100,
       body: SafeArea(
         child: Column(
           children: [
