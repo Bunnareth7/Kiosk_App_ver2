@@ -78,8 +78,6 @@ class AppPath {
   static const String creditCard = 'assets/images/creditCard.svg';
   static const String khqrIcon = 'assets/images/KHQR.svg';
 
-  //video
-
   static const String paymentsuccess = 'assets/video/paymentsuccess.mp4';
   static const String qrCode = 'assets/images/QR.svg';
   static const String koiWalletqr = 'assets/images/koi_wallet_qr.svg';
@@ -101,4 +99,7 @@ class AppPath {
   static const String logout = 'assets/icons/Logout.svg';
   static const String paper = 'assets/icons/Paper.svg';
   static const String switchIcon = 'assets/icons/switch.svg';
+
+  //terminal
+  static const String terminal = 'assets/images/terminalLogo.svg';
 }

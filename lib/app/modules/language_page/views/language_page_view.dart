@@ -49,7 +49,7 @@ class LanguageView extends StatelessWidget {
                 },
               ),
             ),
-            30.verticalSpace,
+            50.verticalSpace,
 
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),

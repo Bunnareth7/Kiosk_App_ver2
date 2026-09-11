@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:kiosk_app/app/core/results/results.dart';
 import 'package:kiosk_app/app/data/providers/api_service.dart';
-import 'package:kiosk_app/app/modules/ordering_page/views/ordering_page_view.dart';
+import 'package:kiosk_app/app/modules/select_terminal/views/select_terminal_view.dart';
+
 
 class LoginController extends GetxController {
   final ApiService _apiService = Get.find<ApiService>();
@@ -23,7 +24,7 @@ class LoginController extends GetxController {
     final token = _storage.read('access_token');
     if (token != null && token.toString().isNotEmpty) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        OrderingView.open();
+        SelectionTerminalView.open();
       });
     }
   }
@@ -51,7 +52,7 @@ class LoginController extends GetxController {
         case Success():
           final token = result.data['access_token'];
           _storage.write('access_token', token);
-          OrderingView.open();
+          SelectionTerminalView.open();
           break;
 
         case Failure():

@@ -36,7 +36,7 @@ class OrderDetailHeader extends StatelessWidget {
                   imagePath,
                   fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) =>
-                      const Icon(Icons.image, color: Colors.grey),
+                      const Icon(Icons.image, color: AppColor.neutral400),
                 ),
               ),
             ),
@@ -45,7 +45,7 @@ class OrderDetailHeader extends StatelessWidget {
 
         // Back Button
         Positioned(
-          top: 12.h,
+          top: 0.h,
           left: 12.w,
           child: AnimInkWell(
             onTap: () => Get.back(),

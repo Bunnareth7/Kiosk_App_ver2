@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kiosk_app/app/constants/app_decoration.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
+import 'package:kiosk_app/app/modules/setting/views/setting_view.dart';
+import 'package:kiosk_app/app/widgets/tripple_tap.dart';
 
 class PaymentFooter extends StatelessWidget {
   const PaymentFooter({super.key});
@@ -49,11 +51,16 @@ class _MonakomLogo extends StatelessWidget {
     return SizedBox(
       width: 80.w,
       height: 30.w,
-      child: Image.asset(
-        AppPath.monakomLogo,
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) =>
-            Container(height: 28.w, width: 90.w, color: Colors.grey[200]),
+      child: TripleTapDetector(
+        onTripleTap: () { 
+          SettingView.open();
+         },
+        child: Image.asset(
+          AppPath.monakomLogo,
+          fit: BoxFit.cover,
+          errorBuilder: (_, __, ___) =>
+              Container(height: 28.w, width: 90.w, color: Colors.grey[200]),
+        ),
       ),
     );
   }

@@ -37,7 +37,7 @@ class CostumHomeAppbar extends StatelessWidget {
 
             AnimInkWell(
               onTap: () {
-                SettingView.open();
+               // member
               },
               child: Row(
                 children: [

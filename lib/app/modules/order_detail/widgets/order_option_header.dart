@@ -23,7 +23,7 @@ class OrderOptionSectionHeader extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
             decoration: BoxDecoration(
-              color: AppColor.mainprimarykoi.withOpacity(0.12),
+              color: AppColor.primarykoi200,
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(

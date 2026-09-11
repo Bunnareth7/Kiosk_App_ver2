@@ -103,7 +103,7 @@ class _TipItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected
               ? AppColor.primarykoi200
-              : AppColor.neutral50,
+              : AppColor.neutral200,
           borderRadius: BorderRadius.circular(6.r),
         ),
         child: Column(

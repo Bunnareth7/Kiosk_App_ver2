@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kiosk_app/app/modules/checkout/widgets/checkout_tip.dart';
 import 'package:kiosk_app/app/modules/checkout/widgets/koi_wallet_dialog.dart';
+import 'package:kiosk_app/app/modules/checkout/widgets/packaging_option_widget.dart';
 import 'package:kiosk_app/app/modules/checkout/widgets/payment_method_dialog.dart';
 import 'package:kiosk_app/app/routes/app_pages.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
@@ -37,6 +38,13 @@ class CheckoutView extends GetView<CheckoutController> {
 
                   6.verticalSpace,
 
+                  Obx(
+                    () => PackagingOptionWidget(
+                      selectedIndex: controller.selectedPackagingIndex.value,
+                      onSelected: controller.selectPackaging,
+                    ),
+                  ),
+                  6.verticalSpace,
                   StreamBuilder<double>(
                     stream: controller.subtotal,
                     builder: (context, snapshot) {

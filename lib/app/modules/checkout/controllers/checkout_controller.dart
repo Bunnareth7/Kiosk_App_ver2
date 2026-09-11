@@ -107,6 +107,12 @@ class CheckoutController extends GetxController {
     }
   }
 
+  final selectedPackagingIndex = 0.obs;
+
+  void selectPackaging(int index) {
+    selectedPackagingIndex.value = index;
+  }
+
   Future<void> updateQuantity(int id, int quantity) async {
     if (quantity <= 0) return;
 

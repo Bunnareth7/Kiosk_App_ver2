@@ -1,244 +1,307 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kiosk_app/app/constants/app_decoration.dart';
+import 'package:get/get.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
+import 'package:kiosk_app/app/modules/ordering_page/views/ordering_page_view.dart';
+import 'package:kiosk_app/app/routes/app_pages.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
+import 'package:kiosk_app/app/theme/app_style.dart';
+import 'package:kiosk_app/app/widgets/app_inkwell.dart';
 
-class SelectionTerminalView extends StatelessWidget {
+class SelectionTerminalView extends StatefulWidget {
   const SelectionTerminalView({super.key});
+
+  static void open() => Get.offNamed(Routes.SELECT_TERMINAL);
+
+  @override
+  State<SelectionTerminalView> createState() => _SelectionTerminalViewState();
+}
+
+class _SelectionTerminalViewState extends State<SelectionTerminalView> {
+  // hardcoded list.
+  static const _stores = ['KOI The IFL', 'KOI The TK', 'KOI The SMC'];
+  static const _terminals = [
+    'KOI The IFL',
+    'KOI The TK',
+    'KOI The SMC',
+    'KOI The 2004',
+    'KOI The 271',
+  ];
+
+  String? _selectedStore;
+  String? _selectedTerminal;
+
+  bool get _canFinish => _selectedStore != null && _selectedTerminal != null;
+
+  void _finish() {
+    if (!_canFinish) return;
+
+    // before navigating.
+    OrderingView.open();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.neutral100,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              20.verticalSpace,
-              SizedBox(
-                width: double.infinity,
-                child: Center(
-                  child: Column(
-                    children: [
-                      30.verticalSpace,
-                      SizedBox(
-                        height: 100.w,
-                        width: 100.w,
-                        child: SvgPicture.asset(
-                          AppPath.menuWeb,
-                          fit: BoxFit.contain,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Container(
-                              color: Colors.grey[200],
-                              child: Icon(Icons.error, size: 50.w),
-                            );
-                          },
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    AnimInkWell(
+                      onTap: () => Get.back(),
+                      child: Icon(
+                        Icons.chevron_left,
+                        size: 26.sp,
+                        color: AppColor.mainprimarykoi,
+                      ),
+                    ),
+                    const Spacer(),
+                    AnimInkWell(
+                      onTap: _canFinish ? _finish : null,
+                      child: Text(
+                        'Finish',
+                        style: AppTextStyle.body3_500.copyWith(
+                          color: _canFinish
+                              ? AppColor.mainprimarykoi
+                              : AppColor.neutral200,
                         ),
                       ),
-                      10.verticalSpace,
-                      // Title
-                      Text(
-                        'Store and Terminal',
-                        style: TextStyle(
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      6.verticalSpace,
-                      // Subtitle
-                      Text(
-                        'Selecting your Store and Terminal',
-                        style: TextStyle(fontSize: 16.sp, color: Colors.black),
-                      ),
-                      10.verticalSpace,
-                      // Store Dropdown
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: AppDecoration.paddingM10,
-                          left: AppDecoration.paddingL20,
-                          right: AppDecoration.paddingL20,
-                        ),
-                        child: Container(
-                          height: 50.w,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: const Color(0xFFecf0f1)),
-                            borderRadius: BorderRadius.circular(
-                              AppDecoration.mediumRadius12,
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton<String>(
-                                    value: null,
-                                    hint: Text(
-                                      'Store',
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 16.sp,
-                                      ),
-                                    ),
-                                    isExpanded: true,
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: AppDecoration.paddingM12,
-                                    ),
-                                    items: const [
-                                      DropdownMenuItem<String>(
-                                        value: 'Store 1',
-                                        child: Text('Store 1'),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: 'Store 2',
-                                        child: Text('Store 2'),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: 'Store 3',
-                                        child: Text('Store 3'),
-                                      ),
-                                    ],
-                                    onChanged: null,
-                                    icon: const Icon(
-                                      Icons.arrow_drop_down,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    ),
+                  ],
+                ),
 
-                      // Terminal Dropdown
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: AppDecoration.paddingL20,
-                          left: AppDecoration.paddingL20,
-                          right: AppDecoration.paddingL20,
-                        ),
-                        child: Container(
-                          height: 50.w,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: const Color(0xFFecf0f1)),
-                            borderRadius: BorderRadius.circular(
-                              AppDecoration.mediumRadius12,
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton<String>(
-                                    value: null,
-                                    hint: Text(
-                                      'Terminal',
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 16.sp,
-                                      ),
-                                    ),
-                                    isExpanded: true,
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: AppDecoration.paddingM12,
-                                    ),
-                                    items: const [
-                                      DropdownMenuItem<String>(
-                                        value: 'Terminal 1',
-                                        child: Text('Terminal 1'),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: 'Terminal 2',
-                                        child: Text('Terminal 2'),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: 'Terminal 3',
-                                        child: Text('Terminal 3'),
-                                      ),
-                                    ],
-                                    onChanged: null,
-                                    icon: const Icon(
-                                      Icons.arrow_drop_down,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                40.verticalSpace,
 
-                      30.verticalSpace,
+                SvgPicture.asset(AppPath.terminal, width: 80.w, height: 80.w),
 
-                      // Finish Button
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: AppDecoration.paddingL20,
-                          right: AppDecoration.paddingL20,
-                        ),
-                        child: Container(
-                          width: double.infinity,
-                          height: 45.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              AppDecoration.smallRadius8,
-                            ),
-                            color: AppColor.mainprimarykoi,
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Finish',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.sp,
-                              ),
-                            ),
-                          ),
-                        ),
+                12.verticalSpace,
+
+                Text(
+                  'Store and Terminal',
+                  style: AppTextStyle.body1_700.copyWith(
+                    color: AppColor.neutral800,
+                  ),
+                ),
+                4.verticalSpace,
+                Text(
+                  'Selecting your Store and Terminal',
+                  style: AppTextStyle.body4_400.copyWith(
+                    color: AppColor.neutral500,
+                  ),
+                ),
+
+                24.verticalSpace,
+
+                _SelectDropdownField(
+                  hint: 'Store',
+                  value: _selectedStore,
+                  options: _stores,
+                  onSelected: (value) {
+                    setState(() => _selectedStore = value);
+                  },
+                ),
+
+                12.verticalSpace,
+
+                _SelectDropdownField(
+                  hint: 'Terminal',
+                  value: _selectedTerminal,
+                  options: _terminals,
+                  onSelected: (value) {
+                    setState(() => _selectedTerminal = value);
+                  },
+                ),
+
+                30.verticalSpace,
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SelectDropdownField extends StatefulWidget {
+  const _SelectDropdownField({
+    required this.hint,
+    required this.value,
+    required this.options,
+    required this.onSelected,
+  });
+
+  final String hint;
+  final String? value;
+  final List<String> options;
+  final ValueChanged<String?> onSelected;
+
+  @override
+  State<_SelectDropdownField> createState() => _SelectDropdownFieldState();
+}
+
+class _SelectDropdownFieldState extends State<_SelectDropdownField> {
+  final LayerLink _layerLink = LayerLink();
+  OverlayEntry? _overlayEntry;
+
+  void _toggleDropdown() {
+    if (_overlayEntry != null) {
+      _removeOverlay();
+    } else {
+      _showOverlay();
+    }
+  }
+
+  void _removeOverlay() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
+  void _showOverlay() {
+    final overlay = Overlay.of(context);
+    final renderBox = context.findRenderObject() as RenderBox;
+    final width = renderBox.size.width;
+
+    _overlayEntry = OverlayEntry(
+      builder: (context) {
+        return Stack(
+          children: [
+            Positioned.fill(
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: _removeOverlay,
+                child: Container(color: Colors.transparent),
+              ),
+            ),
+            CompositedTransformFollower(
+              link: _layerLink,
+              showWhenUnlinked: false,
+              offset: Offset(0, renderBox.size.height + 6.h),
+              child: Material(
+                color: Colors.transparent,
+                child: Container(
+                  width: width,
+                  constraints: BoxConstraints(maxHeight: 260.h),
+                  decoration: BoxDecoration(
+                    color: AppColor.neutral100,
+                    borderRadius: BorderRadius.circular(10.r),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.12),
+                        blurRadius: 12.r,
+                        offset: Offset(0, 4.h),
                       ),
                     ],
                   ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        for (final option in widget.options)
+                          _OptionRow(
+                            label: option,
+                            selected: option == widget.value,
+                            onTap: () {
+                              widget.onSelected(option);
+                              _removeOverlay();
+                            },
+                          ),
+                        _OptionRow(
+                          label: 'Not selected',
+                          selected: false,
+                          isMuted: true,
+                          onTap: () {
+                            widget.onSelected(null);
+                            _removeOverlay();
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-              370.verticalSpace,
+            ),
+          ],
+        );
+      },
+    );
 
-              // Footer
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Powered by Monakom',
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      color: const Color(0xFF666666),
-                    ),
+    overlay.insert(_overlayEntry!);
+  }
+
+  @override
+  void dispose() {
+    _removeOverlay();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CompositedTransformTarget(
+      link: _layerLink,
+      child: AnimInkWell(
+        onTap: _toggleDropdown,
+        child: Container(
+          height: 42.h,
+          width: 343.w,
+          padding: EdgeInsets.symmetric(horizontal: 14.w),
+          decoration: BoxDecoration(
+            color: AppColor.neutral200,
+            borderRadius: BorderRadius.circular(8.r),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  widget.value ?? widget.hint,
+                  style: AppTextStyle.body3_500.copyWith(
+                    color: widget.value != null
+                        ? AppColor.neutral800
+                        : AppColor.neutral400,
                   ),
-                  4.horizontalSpace,
-                  SizedBox(
-                    width: 80.w,
-                    height: 30.w,
-                    child: Image.asset(
-                      AppPath.monakomLogo,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          color: Colors.grey[200],
-                          child: Icon(Icons.business, size: 30.w),
-                        );
-                      },
-                    ),
-                  ),
-                ],
+                ),
               ),
+              Icon(Icons.unfold_more, size: 18.sp, color: AppColor.neutral400),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _OptionRow extends StatelessWidget {
+  const _OptionRow({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+    this.isMuted = false,
+  });
+
+  final String label;
+  final bool selected;
+  final bool isMuted;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        color: selected
+            ? AppColor.mainprimarykoi.withValues(alpha: 0.08)
+            : Colors.transparent,
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+        child: Text(
+          label,
+          style: AppTextStyle.body3_500.copyWith(color: AppColor.neutral500),
         ),
       ),
     );

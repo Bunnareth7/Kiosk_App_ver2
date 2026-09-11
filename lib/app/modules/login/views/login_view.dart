@@ -163,19 +163,16 @@ class LoginView extends GetView<LoginController> {
                           ),
                         ),
                       ),
+
                       Obx(
                         () => IconButton(
                           onPressed: controller.togglePasswordVisibility,
                           icon: SvgPicture.asset(
-                            AppPath.closeEye,
+                            controller.isPasswordVisible.value
+                                ? AppPath.openEye
+                                : AppPath.closeEye,
                             width: 20.w,
                             height: 20.w,
-                            colorFilter: controller.isPasswordVisible.value
-                                ? ColorFilter.mode(
-                                    AppColor.mainprimarykoi,
-                                    BlendMode.srcIn,
-                                  )
-                                : null,
                           ),
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(),
@@ -186,42 +183,42 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
 
-                30.verticalSpace,
+                // 30.verticalSpace,
 
-                Obx(
-                  () => AnimInkWell(
-                    onTap: controller.isLoading.value ? null : controller.login,
-                    child: Container(
-                      width: 343.w,
-                      height: 42.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.r),
-                        color: controller.isLoading.value
-                            ? AppColor.neutral200
-                            : AppColor.mainprimarykoi,
-                      ),
-                      child: Center(
-                        child: controller.isLoading.value
-                            ? SizedBox(
-                                height: 20.w,
-                                width: 20.w,
-                                child: const CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: Colors.white,
-                                ),
-                              )
-                            : Text(
-                                'Login',
-                                style: AppTextStyle.body3_600.copyWith(
-                                  color: AppColor.neutral100,
-                                ),
-                              ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Obx(
+                //   () => AnimInkWell(
+                //     onTap: controller.isLoading.value ? null : controller.login,
+                //     child: Container(
+                //       width: 343.w,
+                //       height: 42.h,
+                //       decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(8.r),
+                //         color: controller.isLoading.value
+                //             ? AppColor.neutral200
+                //             : AppColor.mainprimarykoi,
+                //       ),
+                //       child: Center(
+                //         child: controller.isLoading.value
+                //             ? SizedBox(
+                //                 height: 20.w,
+                //                 width: 20.w,
+                //                 child: const CircularProgressIndicator(
+                //                   strokeWidth: 2,
+                //                   color: Colors.white,
+                //                 ),
+                //               )
+                //             : Text(
+                //                 'Login',
+                //                 style: AppTextStyle.body3_600.copyWith(
+                //                   color: AppColor.neutral100,
+                //                 ),
+                //               ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
 
-                20.verticalSpace,
+                // 20.verticalSpace,
               ],
             ),
           ),
