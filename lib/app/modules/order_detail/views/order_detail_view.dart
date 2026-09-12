@@ -19,7 +19,6 @@ class OrderDetailView extends GetView<OrderDetailController> {
   const OrderDetailView({super.key});
   static void open(dynamic product) =>
       Get.toNamed(Routes.ORDER_DETAIL, arguments: product);
-
   @override
   Widget build(BuildContext context) {
     final product = controller.product;

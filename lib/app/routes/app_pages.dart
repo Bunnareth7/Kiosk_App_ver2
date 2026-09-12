@@ -8,6 +8,8 @@ import '../modules/checkout/bindings/checkout_binding.dart';
 import '../modules/checkout/views/checkout_view.dart';
 import '../modules/defualt_lang_setting/bindings/defualt_lang_setting_binding.dart';
 import '../modules/defualt_lang_setting/views/defualt_lang_setting_view.dart';
+import '../modules/enter_pin/bindings/enter_pin_binding.dart';
+import '../modules/enter_pin/views/enter_pin_view.dart';
 import '../modules/general_setting/bindings/general_setting_binding.dart';
 import '../modules/general_setting/views/general_setting_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -144,6 +146,11 @@ class AppPages {
       name: _Paths.DEFUALT_LANG_SETTING,
       page: () => const DefaultLanguageView(),
       binding: DefualtLangSettingBinding(),
+    ),
+    GetPage(
+      name: _Paths.ENTER_PIN,
+      page: () => const EnterPinView(),
+      binding: EnterPinBinding(),
     ),
   ];
 }

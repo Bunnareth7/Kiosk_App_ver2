@@ -25,6 +25,7 @@ abstract class Routes {
   static const GENERAL_SETTING = _Paths.GENERAL_SETTING;
   static const LIST_OF_PRODUCT = _Paths.LIST_OF_PRODUCT;
   static const DEFUALT_LANG_SETTING = _Paths.DEFUALT_LANG_SETTING;
+  static const ENTER_PIN = _Paths.ENTER_PIN;
 }
 
 abstract class _Paths {
@@ -51,4 +52,5 @@ abstract class _Paths {
   static const GENERAL_SETTING = '/general-setting';
   static const LIST_OF_PRODUCT = '/list-of-product';
   static const DEFUALT_LANG_SETTING = '/defualt-lang-setting';
+  static const ENTER_PIN = '/enter-pin';
 }

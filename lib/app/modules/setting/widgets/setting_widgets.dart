@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:kiosk_app/app/constants/app_path.dart';
+import 'package:kiosk_app/app/modules/ordering_page/views/ordering_page_view.dart';
 import 'package:kiosk_app/app/theme/app_color.dart';
 import 'package:kiosk_app/app/theme/app_style.dart';
 import 'package:kiosk_app/app/widgets/app_inkwell.dart';
@@ -24,7 +23,8 @@ class SettingHeader extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: AnimInkWell(
-                  onTap: () => Get.back(),
+                  onTap: () => OrderingView.open(),
+
                   child: Icon(
                     Icons.chevron_left,
                     size: 26.sp,
@@ -32,28 +32,19 @@ class SettingHeader extends StatelessWidget {
                   ),
                 ),
               ),
-              Text(
-                'Setting',
-                style: AppTextStyle.body2_600,
-              ),
+              Text('Setting', style: AppTextStyle.body2_600),
             ],
           ),
         ),
         10.verticalSpace,
-        Container(
-          height: 1.h,
-          color: AppColor.neutral200,
-        ),
+        Container(height: 1.h, color: AppColor.neutral200),
       ],
     );
   }
 }
 
 class SettingGroup extends StatelessWidget {
-  const SettingGroup({
-    super.key,
-    required this.tiles,
-  });
+  const SettingGroup({super.key, required this.tiles});
 
   final List<SettingTile> tiles;
 
@@ -106,10 +97,7 @@ class SettingTile extends StatelessWidget {
     return AnimInkWell(
       onTap: onTap,
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 16.w,
-          vertical: 14.h,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         child: Row(
           children: [
             if (iconAsset != null) ...[

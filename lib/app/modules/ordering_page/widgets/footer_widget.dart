@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kiosk_app/app/constants/app_decoration.dart';
 import 'package:kiosk_app/app/constants/app_path.dart';
+import 'package:kiosk_app/app/modules/enter_pin/views/enter_pin_view.dart';
 import 'package:kiosk_app/app/modules/setting/views/setting_view.dart';
 import 'package:kiosk_app/app/widgets/tripple_tap.dart';
 
@@ -52,13 +53,14 @@ class _MonakomLogo extends StatelessWidget {
       width: 80.w,
       height: 30.w,
       child: TripleTapDetector(
-        onTripleTap: () { 
-          SettingView.open();
-         },
+        onTripleTap: () {
+          // SettingView.open();
+          EnterPinView.open();
+        },
         child: Image.asset(
           AppPath.monakomLogo,
           fit: BoxFit.cover,
-          errorBuilder: (_, __, ___) =>
+          errorBuilder: (_, _, _) =>
               Container(height: 28.w, width: 90.w, color: Colors.grey[200]),
         ),
       ),
